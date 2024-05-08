@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,4 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [MemberController::class, 'index'])->name('home');
