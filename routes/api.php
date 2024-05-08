@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ChapterController;
-use App\Http\Controllers\RegionController;
+use App\Http\Controllers\API\MemberController;
+use App\Http\Controllers\API\ChapterController;
+use App\Http\Controllers\API\RegionController;
 
 /*
 |--------------------------------------------------------------------------

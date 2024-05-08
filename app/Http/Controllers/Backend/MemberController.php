@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Regions;
 
-class RegionController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,17 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $regions = Regions::get();
-        return response()->json(['eoregions' => $regions]);
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -26,11 +35,7 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        $regions = new Regions();
-        $regions->region = $request->region;
-        $regions->save();
-
-        return response()->json($regions);
+        //
     }
 
     /**
@@ -41,8 +46,18 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        $regions = Regions::find($id);
-        return response()->json($regions);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -54,11 +69,7 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $regions = Regions::find($id);
-        $regions->region = $request->region;
-        $regions->save();
-
-        return response()->json($regions);
+        //
     }
 
     /**
@@ -69,7 +80,6 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        Regions::destroy($id);
-        return response()->json(['message' => 'Deleted']);
+        //
     }
 }

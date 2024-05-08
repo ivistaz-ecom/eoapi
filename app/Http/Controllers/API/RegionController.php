@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Chapters;
+use App\Models\Regions;
 
-class ChapterController extends Controller
+class RegionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        $chapters = Chapters::get();
-        return response()->json(['eochapters' => $chapters]);
+        $regions = Regions::get();
+        return response()->json(['eoregions' => $regions]);
     }
 
     /**
@@ -26,12 +27,11 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        $chapters = new Chapters();
-        $chapters->chapters = $request->chapters;
-        $chapters->description = $request->description;
-        $chapters->save();
+        $regions = new Regions();
+        $regions->region = $request->region;
+        $regions->save();
 
-        return response()->json($chapters);
+        return response()->json($regions);
     }
 
     /**
@@ -42,8 +42,8 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
-        $chapters = Chapters::find($id);
-        return response()->json($chapters);
+        $regions = Regions::find($id);
+        return response()->json($regions);
     }
 
     /**
@@ -55,12 +55,11 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $chapters = find($id);
-        $chapters->chapters = $request->chapters;
-        $chapters->description = $request->description;
-        $chapters->save();
+        $regions = Regions::find($id);
+        $regions->region = $request->region;
+        $regions->save();
 
-        return response()->json($chapters);
+        return response()->json($regions);
     }
 
     /**
@@ -71,7 +70,7 @@ class ChapterController extends Controller
      */
     public function destroy($id)
     {
-        Chapters::destroy($id);
+        Regions::destroy($id);
         return response()->json(['message' => 'Deleted']);
     }
 }
