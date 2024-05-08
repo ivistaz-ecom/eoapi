@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Eomembers;
 
 class MemberController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Eomembers::get();
+        return view('home', ["members" => $members]);
     }
 
     /**
