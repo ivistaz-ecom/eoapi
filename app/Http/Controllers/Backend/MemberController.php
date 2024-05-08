@@ -32,7 +32,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('addmember');
     }
 
     /**
@@ -54,7 +54,8 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = Eomembers::find($id);
+        return view('showmember', ['member' => $member]);
     }
 
     /**

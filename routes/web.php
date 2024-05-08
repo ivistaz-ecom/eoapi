@@ -25,3 +25,5 @@ Auth::routes([
 ]);
 
 Route::get('/home', [MemberController::class, 'index'])->name('home');
+Route::get('/addmember', [MemberController::class, 'create'])->name('addmember');
+Route::get('/show-member/{id}', [MemberController::class, 'show'])->name('show-member');
