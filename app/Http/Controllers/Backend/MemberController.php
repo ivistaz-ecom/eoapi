@@ -21,8 +21,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Eomembers::get();
-        return view('home', ["members" => $members]);
+        $members = Eomembers::select('*')->paginate(12);
+        return view('allmembers', ["members" => $members]);
     }
 
     /**
