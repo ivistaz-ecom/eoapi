@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MemberController;
+use App\Http\Controllers\Backend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
-
-Route::get('/home', [MemberController::class, 'index'])->name('home');
-Route::get('/addmember', [MemberController::class, 'create'])->name('addmember');
-Route::get('/show-member/{id}', [MemberController::class, 'show'])->name('show-member');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/members', [MemberController::class, 'index'])->name('members');
+    Route::get('/addmember', [MemberController::class, 'create'])->name('addmember');
+    Route::get('/show-member/{id}', [MemberController::class, 'show'])->name('show-member');
+});
