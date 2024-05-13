@@ -29,4 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/members', [MemberController::class, 'index'])->name('members');
     Route::get('/addmember', [MemberController::class, 'create'])->name('addmember');
     Route::get('/show-member/{id}', [MemberController::class, 'show'])->name('show-member');
+    Route::get('/edit-member/{id}', [MemberController::class, 'edit'])->name('edit-member');
+    Route::post('/update-member', [MemberController::class, 'update'])->name('update-member');
+    Route::get('add-member', [MemberController::class, 'create'])->name('add-member');
+    Route::post('save-data', [MemberController::class, 'store'])->name('save-data');
 });
