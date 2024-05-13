@@ -43,7 +43,19 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $eomembers = new Eomembers();
+        $eomembers->firstname = $request->firstname;
+        $eomembers->lastname = $request->lastname;
+        $eomembers->email = $request->email;
+        $eomembers->chapter = $request->chapter;
+        $eomembers->region = $request->region;
+        $eomembers->joindt = $request->joindt;
+        $eomembers->industry = $request->industry;
+        $eomembers->voucher_amt = $request->voucher_amt;
+        $eomembers->exprdt = $request->exprdt;
+        $eomembers->save();
+
+        return \Redirect::route('members')->with(['message' => 'Member added successfully']);
     }
 
     /**
@@ -66,7 +78,8 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $member = Eomembers::find($id);
+        return view('editmember', ['member' => $member]);
     }
 
     /**
@@ -78,7 +91,7 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request;
     }
 
     /**
