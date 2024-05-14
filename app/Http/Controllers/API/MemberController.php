@@ -31,6 +31,21 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'chapter' => 'required',
+            'region' => 'required',
+            'joindt' => 'required'
+        ],[
+            'firstname.required' => 'Please enter your first name',
+            'lastname.required' => 'Please enter your last name',
+            'email.required' => 'Please enter your email',
+            'chapter.required' => 'Please enter your chapter',
+            'region.required' => 'Please enter your region',
+            'joindt.required' => 'Please enter your joining date'
+        ]);
         $eomembers = new Eomembers();
         $eomembers->firstname = $request->firstname;
         $eomembers->lastname = $request->lastname;
