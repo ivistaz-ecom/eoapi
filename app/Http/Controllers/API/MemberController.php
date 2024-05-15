@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Eomembers;
 use App\Models\Chapters;
 use App\Models\Regions;
@@ -29,36 +30,13 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $validate = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'chapter' => 'required',
-            'region' => 'required',
-            'joindt' => 'required'
-        ],[
-            'firstname.required' => 'Please enter your first name',
-            'lastname.required' => 'Please enter your last name',
-            'email.required' => 'Please enter your email',
-            'chapter.required' => 'Please enter your chapter',
-            'region.required' => 'Please enter your region',
-            'joindt.required' => 'Please enter your joining date'
+        $eomembers = Eomembers::create($request->all());
+        return response()->json([
+            'messgae' => 'Member saved successfully',
+            'eomembers' => $eomembers
         ]);
-        $eomembers = new Eomembers();
-        $eomembers->firstname = $request->firstname;
-        $eomembers->lastname = $request->lastname;
-        $eomembers->email = $request->email;
-        $eomembers->chapter = $request->chapter;
-        $eomembers->region = $request->region;
-        $eomembers->joindt = $request->joindt;
-        $eomembers->industry = $request->industry;
-        $eomembers->voucher_amt = $request->voucher_amt;
-        $eomembers->exprdt = $request->exprdt;
-        $eomembers->save();
-
-        return response()->json($eomembers);
     }
 
     /**
@@ -80,21 +58,26 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
+        // $eomembers = new Eomembers();
+        // $eomembers->where('id', $id)->update([
+        //     'firstname' => $request->firstname,
+        //     'lastname' => $request->lastname,
+        //     'email' => $request->email,
+        //     'chapter' => $request->chapter,
+        //     'region' => $request->region,
+        //     'joindt' => $request->joindt,
+        //     'industry' => $request->industry,
+        //     'voucher_amt' => $request->voucher_amt,
+        //     'exprdt' => $request->exprdt
+        // ]);
         $eomembers = Eomembers::find($id);
-        $eomembers->firstname = $request->firstname;
-        $eomembers->lastname = $request->lastname;
-        $eomembers->email = $request->email;
-        $eomembers->chapter = $request->chapter;
-        $eomembers->region = $request->region;
-        $eomembers->joindt = $request->joindt;
-        $eomembers->industry = $request->industry;
-        $eomembers->voucher_amt = $request->voucher_amt;
-        $eomembers->exprdt = $request->exprdt;
-        $eomembers->save();
-
-        return response()->json($eomembers);
+        $eomembers->update($request->all());
+        return response()->json([
+            'message' => 'Member updated successfully',
+            'eomembers' => $eomembers 
+        ]);
     }
 
     /**
