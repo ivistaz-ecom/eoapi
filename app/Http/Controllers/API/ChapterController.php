@@ -56,10 +56,8 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $chapters = find($id);
-        $chapters->chapters = $request->chapters;
-        $chapters->description = $request->description;
-        $chapters->save();
+        $chapters = Chapters::find($id);
+        $chapters->update($request->all());
 
         return response()->json($chapters);
     }
