@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('eomembers', MemberController::class);
+Route::patch('/eomembers/{id}', [MemberController::class, 'update']);
 Route::apiResource('chapters', ChapterController::class);
 Route::apiResource('regions', RegionController::class);
