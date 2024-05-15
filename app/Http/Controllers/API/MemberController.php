@@ -60,18 +60,6 @@ class MemberController extends Controller
      */
     public function update(Request $request,$id)
     {
-        // $eomembers = new Eomembers();
-        // $eomembers->where('id', $id)->update([
-        //     'firstname' => $request->firstname,
-        //     'lastname' => $request->lastname,
-        //     'email' => $request->email,
-        //     'chapter' => $request->chapter,
-        //     'region' => $request->region,
-        //     'joindt' => $request->joindt,
-        //     'industry' => $request->industry,
-        //     'voucher_amt' => $request->voucher_amt,
-        //     'exprdt' => $request->exprdt
-        // ]);
         $eomembers = Eomembers::find($id);
         $eomembers->update($request->all());
         return response()->json([
