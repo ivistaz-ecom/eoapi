@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRieMemberRequest;
+use App\Models\RieMembers;
 
 class RieMemberController extends Controller
 {
@@ -14,7 +16,7 @@ class RieMemberController extends Controller
      */
     public function index()
     {
-        //
+        return 'Silence is golden';
     }
 
     /**
@@ -23,9 +25,13 @@ class RieMemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRieMemberRequest $request)
     {
-        //
+        $riemember = RieMembers::create($request->all());
+        return response()->json([
+            'messgae' => 'RieMember saved successfully',
+            'riemembers' => $riemember
+        ]);
     }
 
     /**
@@ -36,7 +42,8 @@ class RieMemberController extends Controller
      */
     public function show($id)
     {
-        //
+        $riemember = RieMembers::find($id);
+        return response()->json($riemember);
     }
 
     /**
@@ -59,6 +66,7 @@ class RieMemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RieMembers::destroy($id);
+        return response()->json(['message' => 'Member deleted successfully']);
     }
 }
