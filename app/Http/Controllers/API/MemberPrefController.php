@@ -70,6 +70,7 @@ class MemberPrefController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RieMembersPref::destroy($id);
+        return response()->json(['message' => 'Preferences deleted successfully']);
     }
 }
