@@ -61,7 +61,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Member Details</h6>
                         <a class="collapse-item" href="{{ route('members') }}">All Members</a>
-                        <a class="collapse-item" href="#">Add Member</a>
+                        <a class="collapse-item" href="{{ route('add-member') }}">Add Member</a>
                     </div>
                 </div>
             </li>
@@ -75,8 +75,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Chapter Options:</h6>
-                        <a class="collapse-item" href="#">All Chapters</a>
-                        <a class="collapse-item" href="#">Add Chapter</a>
+                        <a class="collapse-item" href="{{ route('chapters') }}">All Chapters</a>
+                        <a class="collapse-item" href="{{ route('add-chapter') }}">Add Chapter</a>
                     </div>
                 </div>
             </li>

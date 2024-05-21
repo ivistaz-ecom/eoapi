@@ -24,7 +24,7 @@
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->chapter }}</td>
                     <td>{{ $member->region }}</td>
-                    <td><a href="{{ route('show-member', $member->id) }}"><i class="bi bi-eye"></i></a>&nbsp;<a href="{{ route('edit-member', $member->id) }}"><i class="bi bi-pencil"></i></a></td>
+                    <td><a href="{{ route('show-member', $member->id) }}"><i class="bi bi-eye"></i></a>&nbsp;<a href="{{ route('edit-member', $member->id) }}"><i class="bi bi-pencil"></i></a>&nbsp;<a href="{{ route('delete-member', $member->id) }}" onclick="return confirm('Are you sure you want to delete this member?');"><i class="bi bi-trash"></i></a></td>
                 </tr>
                 @endforeach
             </table>
