@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ChapterController;
 use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RieMemberController;
+use App\Http\Controllers\API\MemberPrefController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,5 @@ Route::post('/logout', [UserController::class, 'logout']);
     Route::apiResource('chapters', ChapterController::class);
     Route::apiResource('regions', RegionController::class);
     Route::apiResource('rie-member', RieMemberController::class);
+    Route::apiResource('member-preference', MemberPrefController::class);
 //});
