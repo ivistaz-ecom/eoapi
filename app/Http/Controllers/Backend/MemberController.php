@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Eomembers;
+use App\Models\Chapters;
+use App\Models\Regions;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -66,7 +69,12 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Eomembers::find($id);
+        $member = DB::table('eomembers')
+        ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
+        ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt')
+        ->where('eomembers.id', $id)
+        ->get();
         return view('showmember', ['member' => $member]);
     }
 
@@ -79,7 +87,9 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Eomembers::find($id);
-        return view('editmember', ['member' => $member]);
+        $chapters = Chapters::get();
+        $regions = Regions::get();
+        return view('editmember', ['member' => $member, 'chapters' => $chapters, 'regions' => $regions]);
     }
 
     /**
@@ -89,9 +99,12 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return $request;
+        $eomembers = Eomembers::find($request->id);
+        $eomembers->update($request->all());
+
+        return \Redirect::route('edit-member', $request->id)->with(['message' => 'Member updated successfully']);
     }
 
     /**
@@ -102,6 +115,7 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Eomembers::destroy($id);
+        return \Redirect::route('members')->with(['message' => 'Member deleted successfully']);
     }
 }

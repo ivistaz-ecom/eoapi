@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Chapters</h5>
                         <p class="card-text">{{ $chapters }}</p>
-                        <a href="#" class="btn btn-primary">View Chapters</a>
+                        <a href="{{ route('chapters') }}" class="btn btn-primary">View Chapters</a>
                     </div>
                 </div>
             </div>

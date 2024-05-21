@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MemberController;
 use App\Http\Controllers\API\ChapterController;
 use App\Http\Controllers\API\RegionController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,16 @@ use App\Http\Controllers\API\RegionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::apiResource('eomembers', MemberController::class);
-Route::apiResource('chapters', ChapterController::class);
-Route::apiResource('regions', RegionController::class);
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
+
+//Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
+    Route::apiResource('eomembers', MemberController::class);
+    Route::apiResource('chapters', ChapterController::class);
+    Route::apiResource('regions', RegionController::class);
+//});
