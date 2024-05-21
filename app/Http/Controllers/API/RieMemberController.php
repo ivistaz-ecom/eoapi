@@ -16,7 +16,11 @@ class RieMemberController extends Controller
      */
     public function index()
     {
-        return 'Silence is golden';
+        $riemembers = RieMembers::get();
+        return response()->json([
+            'message' => 'Silence is golden',
+            'riemember' => $riemembers
+        ]);
     }
 
     /**
