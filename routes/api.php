@@ -8,6 +8,7 @@ use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RieMemberController;
 use App\Http\Controllers\API\MemberPrefController;
+use App\Http\Controllers\API\OfferPackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,5 @@ Route::post('/logout', [UserController::class, 'logout']);
     Route::apiResource('regions', RegionController::class);
     Route::apiResource('rie-member', RieMemberController::class);
     Route::apiResource('member-preference', MemberPrefController::class);
+    Route::apiResource('offer-packages', OfferPackageController::class);
 //});
