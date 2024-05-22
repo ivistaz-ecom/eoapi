@@ -16,7 +16,12 @@ class OfferPackageController extends Controller
      */
     public function index()
     {
-        $packages = OfferPackages::get();
+        $date = now();
+        //$now = $date->toDateString();
+        $packages = OfferPackages::where('offerstatus', 'y')
+            ->where('rangestart', '>=', $date)
+            ->where('rangeend', '<=', $date)
+            ->get();
         return response()->json(['packages' => $packages]);
     }
 
@@ -56,7 +61,12 @@ class OfferPackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $package = OfferPackages::find($id);
+        $package->update($request->all());
+        return response()->json([
+            'message' => 'Offer updated successfully',
+            'package' => $package
+        ]);
     }
 
     /**
