@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Eomembers;
 use App\Models\Chapters;
 use App\Models\Regions;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -18,7 +19,11 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $eomembers = Eomembers::get();
+        $eomembers = DB::table('eomembers')
+        ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
+        ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt')
+        ->get();
         $chapters = Chapters::get();
         $regions = Regions::get();
         return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions]);
