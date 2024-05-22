@@ -30,7 +30,8 @@ class OfferPackageRequest extends FormRequest
             'rangeend' => 'required',
             'numbooked' => 'required',
             'packageorder' => 'required',
-            'offerstatus' => 'required'
+            'offerstatus' => 'required',
+            'offercount' => 'required'
         ];
     }
 }

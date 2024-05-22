@@ -17,10 +17,9 @@ class OfferPackageController extends Controller
     public function index()
     {
         $date = now();
-        //$now = $date->toDateString();
         $packages = OfferPackages::where('offerstatus', 'y')
-            ->where('rangestart', '>=', $date)
-            ->where('rangeend', '<=', $date)
+            ->where('rangestart', '<=', $date)
+            ->where('rangeend', '>=', $date)
             ->get();
         return response()->json(['packages' => $packages]);
     }
@@ -59,7 +58,7 @@ class OfferPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OfferPackageRequest $request, $id)
     {
         $package = OfferPackages::find($id);
         $package->update($request->all());
