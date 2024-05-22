@@ -15,6 +15,7 @@ class OfferPackages extends Model
         'rangeend',
         'numbooked',
         'packageorder',
-        'offerstatus'
+        'offerstatus',
+        'offercount'
     ];
 }
