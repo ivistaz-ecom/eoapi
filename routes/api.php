@@ -26,7 +26,7 @@ use App\Http\Controllers\API\OfferPackageController;
 // });
 
 Route::post('/register', [UserController::class, 'register']);
-Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
