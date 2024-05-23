@@ -30,11 +30,10 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
-    
+    Route::apiResource('eomembers', MemberController::class);
     Route::apiResource('chapters', ChapterController::class);
     Route::apiResource('regions', RegionController::class);
     Route::apiResource('rie-member', RieMemberController::class);
     Route::apiResource('member-preference', MemberPrefController::class);
     Route::apiResource('offer-packages', OfferPackageController::class);
 });
-Route::apiResource('eomembers', MemberController::class);
