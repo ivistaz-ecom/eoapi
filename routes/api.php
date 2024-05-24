@@ -9,6 +9,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RieMemberController;
 use App\Http\Controllers\API\MemberPrefController;
 use App\Http\Controllers\API\OfferPackageController;
+use App\Http\Controllers\API\SlpRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('rie-member', RieMemberController::class);
     Route::apiResource('member-preference', MemberPrefController::class);
     Route::apiResource('offer-packages', OfferPackageController::class);
+    Route::apiResource('slp-registration', SlpRegController::class);
 });
