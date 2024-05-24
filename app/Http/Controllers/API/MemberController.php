@@ -19,10 +19,13 @@ class MemberController extends Controller
      */
     public function index()
     {
+        $curdt = date('Y-m-d');
         $eomembers = DB::table('eomembers')
         ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
         ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
         ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt')
+        ->where('eomembers.chapter', '=', 4)
+        ->where('eomembers.region', '=', 4)
         ->get();
         $chapters = Chapters::get();
         $regions = Regions::get();
