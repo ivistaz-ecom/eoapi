@@ -34,7 +34,7 @@ class MemberController extends Controller
         ->where('strdt', '<=', $curdt)
         ->where('enddt', '>=', $curdt)
         ->get();
-        return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions]);
+        return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions, 'packages' => $packages]);
     }
 
     /**
