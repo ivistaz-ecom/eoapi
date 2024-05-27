@@ -25,16 +25,12 @@ class MemberController extends Controller
         ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
         ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
         ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status')
-        ->where('eomembers.chapter', '=', 4)
-        ->where('eomembers.region', '=', 4)
         ->get();
-        $chapters = Chapters::get();
-        $regions = Regions::get();
         $packages = OfferPackages::where('offerstatus', 'y')
         ->where('strdt', '<=', $curdt)
         ->where('enddt', '>=', $curdt)
         ->get();
-        return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions, 'packages' => $packages]);
+        return response()->json(['eomembers' => $eomembers, 'packages' => $packages]);
     }
 
     /**
