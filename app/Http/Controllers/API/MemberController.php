@@ -24,13 +24,11 @@ class MemberController extends Controller
         $eomembers = DB::table('eomembers')
         ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
         ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
-        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status')
+        ->leftJoin('offerpackages', 'eomembers.chapter', '=', 'offerpackages.chapter')
+        ->where('eomembers.region', '=', 'offerpackages.region')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status', 'offerpackages.*')
         ->get();
-        $packages = OfferPackages::where('offerstatus', 'y')
-        ->where('strdt', '<=', $curdt)
-        ->where('enddt', '>=', $curdt)
-        ->get();
-        return response()->json(['eomembers' => $eomembers, 'packages' => $packages]);
+        return response()->json(['eomembers' => $eomembers]);
     }
 
     /**
