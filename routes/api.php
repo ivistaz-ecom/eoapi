@@ -11,6 +11,7 @@ use App\Http\Controllers\API\MemberPrefController;
 use App\Http\Controllers\API\OfferPackageController;
 use App\Http\Controllers\API\SlpRegController;
 use App\Http\Controllers\API\SlpPrefController;
+use App\Http\Controllers\API\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('offer-packages', OfferPackageController::class);
     Route::apiResource('slp-registration', SlpRegController::class);
     Route::apiResource('slp-preference', SlpPrefController::class);
+    Route::apiResource('payment-info', PaymentController::class);
 });
