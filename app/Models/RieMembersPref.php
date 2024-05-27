@@ -17,4 +17,7 @@ class RieMembersPref extends Model
         'interests',
         'specialrequest'
     ];
+    protected $casts = [
+        'interests' => 'array',
+    ];
 }
