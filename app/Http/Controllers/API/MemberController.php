@@ -30,7 +30,7 @@ class MemberController extends Controller
         ->get();
         $chapters = Chapters::get();
         $regions = Regions::get();
-        $packages = OfferPackages::where('rangestart', '<=', $curdate)->wherer('rangeend', '>=', $curdate)->get();
+        $packages = OfferPackages::where('rangestart', '<=', $curdt)->wherer('rangeend', '>=', $curdt)->get();
         return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions, 'packages' => $packages]);
     }
 
