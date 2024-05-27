@@ -18,8 +18,8 @@ class OfferPackageController extends Controller
     {
         $date = date('Y-m-d');
         $packages = OfferPackages::where('offerstatus', 'y')
-            ->where('rangestart', '>=', $date)
-            ->where('rangeend', '<=', $date)
+            ->where('strdt', '<=', $date)
+            ->where('enddt', '>=', $date)
             ->get();
         return response()->json(['packages' => $packages]);
     }
