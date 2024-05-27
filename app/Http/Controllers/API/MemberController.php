@@ -24,9 +24,9 @@ class MemberController extends Controller
         $eomembers = DB::table('eomembers')
         ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
         ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
-        ->leftJoin('offerpackages', 'eomembers.chapter', '=', 'offerpackages.chapter')
-        // ->where('eomembers.region', '=', 'offerpackages.region')
-        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status', 'offerpackages.*')
+        ->leftJoin('eventdetail', 'eomembers.chapter', '=', 'eventdetail.chapter')
+        ->where('eomembers.region', '=', 'eventdetail.region')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status', 'eventdetail.eventname', 'eventdetail.strdt', 'eventdetail.enddt', 'eventdetail.chapter', 'eventdetail.region')
         ->get();
         return response()->json(['eomembers' => $eomembers]);
     }
