@@ -16,10 +16,10 @@ class OfferPackageController extends Controller
      */
     public function index()
     {
-        $date = now();
+        $date = date('Y-m-d');
         $packages = OfferPackages::where('offerstatus', 'y')
-            ->where('rangestart', '<=', $date)
-            ->where('rangeend', '>=', $date)
+            ->where('rangestart', '>=', $date)
+            ->where('rangeend', '<=', $date)
             ->get();
         return response()->json(['packages' => $packages]);
     }
