@@ -16,7 +16,8 @@ class SlpRegController extends Controller
      */
     public function index()
     {
-        return response()->json(['message' => 'SLP Data']);
+        $slp = SlpRegistration::get();
+        return response()->json(['message' => 'SLP Data', 'slp' => $slp]);
     }
 
     /**
