@@ -25,7 +25,8 @@ class MemberController extends Controller
         ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
         ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
         ->leftJoin('eventdetail', 'eomembers.chapter', '=', 'eventdetail.chapter')
-        ->where('eomembers.region', '=', 'eventdetail.region')
+        ->where('eochapters.chapters', '=', 'eventdetail.chapter')
+        ->where('eoregions.region', '=', 'eventdetail.region')
         ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status', 'eventdetail.eventname', 'eventdetail.strdt', 'eventdetail.enddt', 'eventdetail.chapter', 'eventdetail.region')
         ->get();
         return response()->json(['eomembers' => $eomembers]);
