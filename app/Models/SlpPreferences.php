@@ -17,4 +17,8 @@ class SlpPreferences extends Model
         'interests',
         'specialrequest'
     ];
+    protected $casts = [
+        'interests' => 'array',
+    ];
+
 }

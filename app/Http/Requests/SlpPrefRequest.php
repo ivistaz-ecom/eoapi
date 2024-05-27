@@ -29,7 +29,7 @@ class SlpPrefRequest extends FormRequest
             'dietpref' => 'required',
             'allergies' => 'required',
             'shirtsize' => 'required',
-            'interests' => 'required',
+            'interests' => 'required|array',
             'specialrequest' => 'required'
         ];
     }
