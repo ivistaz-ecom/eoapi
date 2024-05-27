@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Eomembers;
 use App\Models\Chapters;
 use App\Models\Regions;
+use App\Models\OfferPackages;
 use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
@@ -29,7 +30,8 @@ class MemberController extends Controller
         ->get();
         $chapters = Chapters::get();
         $regions = Regions::get();
-        return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions]);
+        $packages = OfferPackages::where('rangestart', '>=', $curdate)->wherer('rangeend', '<=', $curdate)->get();
+        return response()->json(['eomembers' => $eomembers, 'chapters' => $chapters, 'regions' => $regions, 'packages' => $packages]);
     }
 
     /**
