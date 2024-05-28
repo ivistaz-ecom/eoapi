@@ -103,6 +103,13 @@
                         <a class="collapse-item" href="#">Add Region</a>
                     </div>
                 </div>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Offers</h6>
+                        <a class="collapse-item" href="{{ route('offers') }}">All Offers</a>
+                        <a class="collapse-item" href="{{ route('add-offer') }}">Add Offer</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Charts -->

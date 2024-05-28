@@ -26,8 +26,8 @@ class OfferPackageRequest extends FormRequest
         return [
             'packagename' => 'required',
             'discountpercent' => 'required',
-            'rangestart' => 'required',
-            'rangeend' => 'required',
+            'strdt' => 'required',
+            'enddt' => 'required',
             'numbooked' => 'required',
             'packageorder' => 'required',
             'offerstatus' => 'required',
