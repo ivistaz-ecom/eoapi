@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ChapterController;
+use App\Http\Controllers\Backend\OfferPackagesController;
+use App\Http\Controllers\Backend\PaymentInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update-chapter', [ChapterController::class, 'update'])->name('update-chapter');
     Route::post('create-chapter', [ChapterController::class, 'store'])->name('create-chapter');
     Route::get('add-chapter', [ChapterController::class, 'create'])->name('add-chapter');
+
+    Route::get('offers', [OfferPackagesController::class, 'index'])->name('offers');
+    Route::get('show-offer/{id}', [OfferPackagesController::class, 'show'])->name('show-offer');
+    Route::get('add-offer', [OfferPackagesController::class, 'create'])->name('add-offer');
+    Route::post('save-offer', [OfferPackagesController::class, 'store'])->name('save-offer');
+    Route::get('edit-offer/{id}', [OfferPackagesController::class, 'edit'])->name('edit-offer');
+    Route::post('update-offer', [OfferPackagesController::class, 'update'])->name('update-offer');
+    Route::get('delete-offer/{id}', [OfferPackagesController::class, 'destroy'])->name('delete-offer');
+
+    Route::get('payments', [PaymentInfoController::class, 'index'])->name('payments');
 });

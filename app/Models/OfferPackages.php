@@ -11,8 +11,8 @@ class OfferPackages extends Model
     protected $fillable = [
         'packagename',
         'discountpercent',
-        'rangestart',
-        'rangeend',
+        'strdt',
+        'enddt',
         'numbooked',
         'packageorder',
         'offerstatus',
