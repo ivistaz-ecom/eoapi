@@ -52,7 +52,7 @@ class OfferPackagesController extends Controller
     public function show($id)
     {
         $offer = OfferPackages::find($id);
-        return view('show-offer', ['offer' => $offer]);
+        return view('showoffer', ['offer' => $offer]);
     }
 
     /**
