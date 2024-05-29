@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePaymentRequest;
 use App\Models\PaymentInfo;
+use App\Models\RieMembers;
+use App\Models\Eomembers;
 
 class PaymentController extends Controller
 {
@@ -27,7 +29,21 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
+        //$paymentstatus = $request->paymentstatus;
+        $eoid = $request->eoid;
         $payment = PaymentInfo::create($request->all());
+
+        if ($request->paymentstatus == 'success') {
+             RieMembers::where('eoid', $request->eoid)->update([
+                'sopuseid' => $request->spouseid, 
+                'memregstatus' => $request->memregstatus
+            ]);
+            Eomembers::where('id', $request->eoid)->update([
+                'sopuse_id' => $request->spouseid,
+                'spouse_status' => $request->spousestatus
+            ]);
+        }
+       
         return response()->json([
             'message' => 'Payment saved',
             'payment' => $payment
