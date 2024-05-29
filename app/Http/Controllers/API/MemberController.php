@@ -9,6 +9,7 @@ use App\Models\Eomembers;
 use App\Models\Chapters;
 use App\Models\Regions;
 use App\Models\OfferPackages;
+use App\Models\EventModel;
 use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
@@ -28,7 +29,12 @@ class MemberController extends Controller
         ->where('eventdetail.enddt', '>=', $curdt)
         ->where('eventdetail.offerstatus', '=', 'y')
         ->get();
-        return response()->json(['eomembers' => $eomembers]);
+        $event = EventModel::where('strdt', '<=', $curdt)
+        ->where('enddt', '>=', $curdt)
+        ->where('offerstatus', '=', 'y')
+        ->select('eventname', 'offerstatus')
+        ->get();
+        return response()->json(['eomembers' => $eomembers, 'event' => $event]);
     }
 
     /**
