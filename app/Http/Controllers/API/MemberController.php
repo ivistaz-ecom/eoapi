@@ -32,7 +32,7 @@ class MemberController extends Controller
         $event = EventModel::where('strdt', '<=', $curdt)
         ->where('enddt', '>=', $curdt)
         ->where('offerstatus', '=', 'y')
-        ->select('eventname', 'offerstatus')
+        ->select('eventname', 'offerstatus', 'chapter')
         ->get();
         return response()->json(['eomembers' => $eomembers, 'event' => $event]);
     }
