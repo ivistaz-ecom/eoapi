@@ -29,10 +29,12 @@ class MemberController extends Controller
         ->where('eventdetail.enddt', '>=', $curdt)
         ->where('eventdetail.offerstatus', '=', 'y')
         ->get();
-        $event = EventModel::where('strdt', '<=', $curdt)
-        ->where('enddt', '>=', $curdt)
-        ->where('offerstatus', '=', 'y')
-        ->select('eventname', 'offerstatus', 'chapter')
+        $event = DB::table('eventdetail')
+        ->leftJoin('eochapters', 'eventdetail.chapter', '=', 'eochapters.id')
+        ->where('eventdetail.strdt', '<=', $curdt)
+        ->where('eventdetail.enddt', '>=', $curdt)
+        ->where('eventdetail.offerstatus', '=', 'y')
+        ->select('eventdetail.eventname', 'eventdetail.offerstatus', 'eochapters.chapters')
         ->get();
         return response()->json(['eomembers' => $eomembers, 'event' => $event]);
     }
