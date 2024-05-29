@@ -21,7 +21,13 @@ class MemberController extends Controller
     public function index()
     {
         $curdt = date('Y-m-d');
-        $eomembers = Eomembers::where('chapter', '86')->get();
+        $eomembers = DB::table('eomembers')
+        ->leftJoin('eventdetail', 'eomembers.chapter', '=', 'eventdetail.chapter')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.gender', 'eomembers.spouse_id as spouse', 'eochapters.chapters', 'eoregions.region', 'eomembers.industry', 'eomembers.joindt', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_status')
+        ->where('eventdetail.strdt', '<=', $curdt)
+        ->where('eventdetail.enddt', '>=', $curdt)
+        ->where('eventdetail.offerstatus', '=', 'y')
+        ->get();
         return response()->json(['eomembers' => $eomembers]);
     }
 
