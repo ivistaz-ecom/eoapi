@@ -30,7 +30,8 @@ class SlpPrefRequest extends FormRequest
             'allergies' => 'required',
             'shirtsize' => 'required',
             'interests' => 'required|array',
-            'specialrequest' => 'required'
+            'specialrequest' => 'required',
+            'eoid' => 'required'
         ];
     }
 }

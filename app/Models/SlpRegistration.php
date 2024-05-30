@@ -17,6 +17,7 @@ class SlpRegistration extends Model
         'company',
         'companyaddr',
         'gstno',
-        'regstatus'
+        'regstatus',
+        'eoid'
     ];
 }
