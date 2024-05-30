@@ -49,6 +49,12 @@ class PaymentController extends Controller
                 'regstatus' => 'true'
             ]);
         }
+
+        if ($request->voucher > 0) {
+            Eomembers::where('id', $request->eoid)->update([
+                'voucher_amt' => 0.00
+            ]);
+        }
        
         return response()->json([
             'message' => 'Payment saved',
