@@ -23,8 +23,10 @@ class MemberController extends Controller
     {
         $curdt = date('Y-m-d');
         $eomembers = DB::table('eomembers')
+        ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
+        ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.region')
         ->leftJoin('eventdetail', 'eomembers.chapter', '=', 'eventdetail.chapter')
-        ->select('eomembers.*')
+        ->select('eomembers.firstname', 'eomembers.lastname', 'eomemeobers.email', 'eochapters.chapters', 'eoregions.region', 'eomembers.joindt', 'eomembers.industry', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_id', 'eomembers.gender')
         ->where('eventdetail.strdt', '<=', $curdt)
         ->where('eventdetail.enddt', '>=', $curdt)
         ->where('eventdetail.offerstatus', '=', 'y')
