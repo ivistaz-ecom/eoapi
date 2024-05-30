@@ -28,7 +28,8 @@ class SlpRequest extends FormRequest
             'lastname' => 'required',
             'gender' => 'required',
             'mobile' => 'required',
-            'regstatus' => 'required'
+            'regstatus' => 'required',
+            'eoid' => 'required'
         ];
     }
 }

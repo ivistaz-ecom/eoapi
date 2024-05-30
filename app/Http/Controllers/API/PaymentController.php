@@ -8,6 +8,7 @@ use App\Http\Requests\StorePaymentRequest;
 use App\Models\PaymentInfo;
 use App\Models\RieMembers;
 use App\Models\Eomembers;
+use App\Models\SlpRegistration;
 
 class PaymentController extends Controller
 {
@@ -41,6 +42,9 @@ class PaymentController extends Controller
             Eomembers::where('id', $request->eoid)->update([
                 'spouse_id' => $request->spouseid,
                 'spouse_status' => $request->spousestatus
+            ]);
+            SlpRegistration::where('eoid', $request->eoid)->update([
+                'regstatus' => 'true'
             ]);
         }
        

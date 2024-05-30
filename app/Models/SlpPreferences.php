@@ -15,7 +15,8 @@ class SlpPreferences extends Model
         'allergies',
         'shirtsize',
         'interests',
-        'specialrequest'
+        'specialrequest',
+        'eoid'
     ];
     protected $casts = [
         'interests' => 'array',
