@@ -86,6 +86,7 @@ class MemberController extends Controller
     public function findChapter($email) {
         $event = DB::table('eomembers')
         ->leftJoin('eventdetail', 'eventdetail.chapter', '=', 'eomembers.chapter')
+        ->select('eomembers.email')
         ->where('eomembers.region', '=', 'eventdetail.region')
         ->where('eomembers.email', '=', $email)
         ->get();
