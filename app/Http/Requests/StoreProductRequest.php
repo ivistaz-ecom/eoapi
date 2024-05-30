@@ -29,7 +29,9 @@ class StoreProductRequest extends FormRequest
             'email' => 'required',
             'chapter' => 'required',
             'region' => 'required',
-            'joindt' => 'required'
+            'joindt' => 'required',
+            'eoid' => 'required',
+            'spouse_status' => 'required'
         ];
     }
 }

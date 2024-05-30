@@ -17,6 +17,9 @@ class eomembers extends Model
         'joindt',
         'industry',
         'voucher_amt',
-        'exprdt'
+        'exprdt',
+        'spouse_id',
+        'gender',
+        'spouse_status'
     ];
 }
