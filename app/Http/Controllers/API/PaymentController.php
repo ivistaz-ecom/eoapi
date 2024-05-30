@@ -39,7 +39,7 @@ class PaymentController extends Controller
                 'regstatus' => $request->memregstatus
             ]);
             Eomembers::where('id', $request->eoid)->update([
-                'sopuse_id' => $request->spouseid,
+                'spouse_id' => $request->spouseid,
                 'spouse_status' => $request->spousestatus
             ]);
         }
