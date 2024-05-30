@@ -40,7 +40,8 @@ class StorePaymentRequest extends FormRequest
             'spousestatus' => 'required',
             'txnid' => 'required',
             'paymentstatus' => 'required',
-            'memregstatus' => 'required'
+            'memregstatus' => 'required',
+            'eoid' => 'required'
         ];
     }
 }

@@ -25,6 +25,7 @@ class PaymentInfo extends Model
         'spousestatus',
         'txnid',
         'paymentstatus',
-        'memregstatus'
+        'memregstatus',
+        'eoid'
     ];
 }
