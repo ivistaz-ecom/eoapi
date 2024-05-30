@@ -35,7 +35,7 @@ class PaymentController extends Controller
 
         if ($request->paymentstatus == 'success') {
              RieMembers::where('eoid', $request->eoid)->update([
-                'sopuseid' => $request->spouseid, 
+                'spouseid' => $request->spouseid,
                 'regstatus' => $request->memregstatus
             ]);
             Eomembers::where('id', $request->eoid)->update([
