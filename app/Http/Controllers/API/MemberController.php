@@ -49,10 +49,11 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $email = Eomembers::where('email', $request->email)->get();
-        if (count($email) == 0) {
+        //$email = Eomembers::where('email', '=', $request)->find();
+        //die($request);
+        if (Eomembers::where('email', '=', $request)->count()>0) {
             return response()->json(['message' => 'Email not found']);
-        } elseif ($this->findChapter($email == false)) {
+        } elseif ($this->findChapter($request) == false) {
             return response()->json(['message' => 'Chapter not allowed']);
         } else {
             $curdt = date('Y-m-d');
@@ -79,6 +80,7 @@ class MemberController extends Controller
         //     'messgae' => 'Member saved successfully',
         //     'eomembers' => $eomembers
         // ]);
+        //return $request;
     }
 
     public function findChapter($email) {
@@ -87,7 +89,7 @@ class MemberController extends Controller
         ->where('eomembers.region', '=', 'eventdetail.region')
         ->where('eomembers.email', '=', $email)
         ->get();
-        if (count($event) == 0) {
+        if (count($event) > 0) {
             return true;
         } else {
             return false;
