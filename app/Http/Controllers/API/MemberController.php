@@ -50,7 +50,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $email = Eomembers::where('email', $request->email)->get();
-        if ($email == '') {
+        if (count($email) == 0) {
             return response()->json(['message' => 'Email not found']);
         } elseif ($this->findChapter($email == false)) {
             return response()->json(['message' => 'Chapter not allowed']);
