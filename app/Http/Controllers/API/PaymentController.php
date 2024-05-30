@@ -64,9 +64,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment = PaymentInfo::where('eoid', $id)-get();
+        $payment = PaymentInfo::where('eoid', $id)->get();
         $eomember = Eomembers::find($id);
-        $riemember = RieMembers::where('eoid', $id)-get();
+        $riemember = RieMembers::where('eoid', $id)->get();
         $riememberpref = RieMembersPref::where('eoid', $id)->get();
         $slpregistration = SlpRegistration::where('eoid', $id)->get();
         $slppref = SlpPreferences::where('eoid', $id)->get();
