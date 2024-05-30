@@ -47,13 +47,51 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        $eomembers = Eomembers::create($request->all());
-        return response()->json([
-            'messgae' => 'Member saved successfully',
-            'eomembers' => $eomembers
-        ]);
+        $email = Eomembers::where('email', $request->email)->get();
+        if ($email == '') {
+            return response()->json(['message' => 'Email not found']);
+        } elseif ($this->findChapter($email == false)) {
+            return response()->json(['message' => 'Chapter not allowed']);
+        } else {
+            $curdt = date('Y-m-d');
+            $eomembers = DB::table('eomembers')
+            ->leftJoin('eochapters', 'eomembers.chapter', '=', 'eochapters.id')
+            ->leftJoin('eoregions', 'eomembers.region', '=', 'eoregions.id')
+            ->leftJoin('eventdetail', 'eomembers.chapter', '=', 'eventdetail.chapter')
+            ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eochapters.chapters', 'eoregions.region', 'eomembers.joindt', 'eomembers.industry', 'eomembers.voucher_amt', 'eomembers.exprdt', 'eomembers.spouse_id', 'eomembers.gender')
+            ->where('eventdetail.strdt', '<=', $curdt)
+            ->where('eventdetail.enddt', '>=', $curdt)
+            ->where('eventdetail.offerstatus', '=', 'y')
+            ->get();
+            $event = DB::table('eventdetail')
+            ->leftJoin('eochapters', 'eventdetail.chapter', '=', 'eochapters.id')
+            ->where('eventdetail.strdt', '<=', $curdt)
+            ->where('eventdetail.enddt', '>=', $curdt)
+            ->where('eventdetail.offerstatus', '=', 'y')
+            ->select('eventdetail.eventname', 'eventdetail.offerstatus', 'eochapters.chapters')
+            ->get();
+            return response()->json(['eomembers' => $eomembers, 'event' => $event]);
+        }
+        // $eomembers = Eomembers::create($request->all());
+        // return response()->json([
+        //     'messgae' => 'Member saved successfully',
+        //     'eomembers' => $eomembers
+        // ]);
+    }
+
+    public function findChapter($email) {
+        $event = DB::table('eomembers')
+        ->leftJoin('eventdetail', 'eventdetail.chapter', '=', 'eomembers.chapter')
+        ->where('eomembers.region', '=', 'eventdetail.region')
+        ->where('eomembers.email', '=', $email)
+        ->get();
+        if (count($event) == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
