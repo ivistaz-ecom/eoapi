@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePaymentRequest;
 use App\Models\PaymentInfo;
 use App\Models\RieMembers;
+use App\Models\RieMembersPref;
 use App\Models\Eomembers;
 use App\Models\SlpRegistration;
+use App\Models\SlpPreferences;
 
 class PaymentController extends Controller
 {
@@ -62,8 +64,20 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment = PaymentInfo::find($id);
-        return response()->json($payment);
+        $payment = PaymentInfo::where('eoid', $id)-get();
+        $eomember = Eomembers::find($id);
+        $riemember = RieMembers::where('eoid', $id)-get();
+        $riememberpref = RieMembersPref::where('eoid', $id)->get();
+        $slpregistration = SlpRegistration::where('eoid', $id)->get();
+        $slppref = SlpPreferences::where('eoid', $id)->get();
+        return response()->json([
+            'message' => 'Member registration Info',
+            'eomember' => $eomember,
+            'riemember' => $riemember,
+            'riememberpref' => $riememberpref,
+            'slpregistration' => $slpregistration,
+            'slppref' => $slppref
+        ]);
     }
 
     /**
