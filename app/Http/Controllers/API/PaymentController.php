@@ -76,7 +76,8 @@ class PaymentController extends Controller
             'riemember' => $riemember,
             'riememberpref' => $riememberpref,
             'slpregistration' => $slpregistration,
-            'slppref' => $slppref
+            'slppref' => $slppref,
+            'paymentinfo' => $payment
         ]);
     }
 
