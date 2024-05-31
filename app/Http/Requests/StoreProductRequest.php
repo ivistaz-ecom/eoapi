@@ -30,8 +30,12 @@ class StoreProductRequest extends FormRequest
             'chapter' => 'required',
             'region' => 'required',
             'joindt' => 'required',
+            'industry' => 'required',
+            'voucher_amt' => 'required',
             'spouse_id' => 'required',
-            'spouse_status' => 'required'
+            'gender' => 'required',
+            'spouse_status' => 'required',
+            'regstatus' => 'required'
         ];
     }
 }
