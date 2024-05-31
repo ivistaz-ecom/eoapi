@@ -46,7 +46,7 @@ class PaymentController extends Controller
                 'spouse_status' => $request->spousestatus,
                 'regstatus' => $request->regstatus
             ]);
-            SlpRegistration::where('eoid', $request->eoid)->update([
+            SlpRegistration::where('id', $request->eoid)->update([
                 'regstatus' => 'true'
             ]);
         }
