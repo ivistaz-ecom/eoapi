@@ -32,8 +32,8 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        //$paymentstatus = $request->paymentstatus;
-        $eoid = $request->eoid;
+        // $paymentstatus = $request->paymentstatus;
+        // $eoid = $request->eoid;
         $payment = PaymentInfo::create($request->all());
 
         if ($request->paymentstatus == 'success') {
@@ -49,12 +49,11 @@ class PaymentController extends Controller
             SlpRegistration::where('eoid', $request->eoid)->update([
                 'regstatus' => 'true'
             ]);
-        }
-
-        if ($request->voucher > 0) {
-            Eomembers::where('id', $request->eoid)->update([
-                'voucher_amt' => 0.00
-            ]);
+            if ($request->voucher > 0) {
+                Eomembers::where('id', $request->eoid)->update([
+                    'voucher_amt' => 0.00
+                ]);
+            }
         }
        
         return response()->json([
