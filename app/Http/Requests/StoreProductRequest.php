@@ -30,7 +30,7 @@ class StoreProductRequest extends FormRequest
             'chapter' => 'required',
             'region' => 'required',
             'joindt' => 'required',
-            'eoid' => 'required',
+            'spouse_id' => 'required',
             'spouse_status' => 'required'
         ];
     }
