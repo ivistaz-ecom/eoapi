@@ -43,7 +43,8 @@ class PaymentController extends Controller
             ]);
             Eomembers::where('id', $request->eoid)->update([
                 'spouse_id' => $request->spouseid,
-                'spouse_status' => $request->spousestatus
+                'spouse_status' => $request->spousestatus,
+                'regstatus' => $request->regstatus
             ]);
             SlpRegistration::where('eoid', $request->eoid)->update([
                 'regstatus' => 'true'
