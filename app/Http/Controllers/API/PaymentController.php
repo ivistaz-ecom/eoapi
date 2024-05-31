@@ -49,11 +49,11 @@ class PaymentController extends Controller
             // SlpRegistration::where('eoid', $request->eoid)->update([
             //     'regstatus' => $request->spousestatus
             // ]);
-            // if ($request->voucher > 0) {
-            //     Eomembers::where('id', $request->eoid)->update([
-            //         'voucher_amt' => 0.00
-            //     ]);
-            // }
+            if ($request->voucher > 0) {
+                Eomembers::where('id', $request->eoid)->update([
+                    'voucher_amt' => 0.00
+                ]);
+            }
         }
        
         return response()->json([
