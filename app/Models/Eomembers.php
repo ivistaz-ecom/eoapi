@@ -20,6 +20,7 @@ class eomembers extends Model
         'exprdt',
         'spouse_id',
         'gender',
-        'spouse_status'
+        'spouse_status',
+        'regstatus'
     ];
 }
