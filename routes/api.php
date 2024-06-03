@@ -42,5 +42,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('slp-registration', SlpRegController::class);
     Route::apiResource('slp-preference', SlpPrefController::class);
     Route::apiResource('payment-info', PaymentController::class);
-    Route::post('check-email', [MemberController::class, 'checlEmail']);
+    Route::get('check-email', [MemberController::class, 'checlEmail']);
 });
