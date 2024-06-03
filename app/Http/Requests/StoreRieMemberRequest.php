@@ -29,7 +29,6 @@ class StoreRieMemberRequest extends FormRequest
             'mobile' => 'required',
             'industry' => 'required',
             'company' => 'required',
-            'gstno' => 'required',
             'companyaddr' => 'required',
             'spouseid' => 'required',
             'regstatus' => 'required'

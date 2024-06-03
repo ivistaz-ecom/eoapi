@@ -27,10 +27,8 @@ class SlpPrefRequest extends FormRequest
             'slpid' => 'required',
             'flyingfrom' => 'required',
             'dietpref' => 'required',
-            'allergies' => 'required',
             'shirtsize' => 'required',
             'interests' => 'required|array',
-            'specialrequest' => 'required',
             'eoid' => 'required'
         ];
     }
