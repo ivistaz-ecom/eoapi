@@ -42,22 +42,6 @@ class MemberController extends Controller
     }
 
     /**
-     * Check if email exists in the database
-     * 
-     * @param $request
-     * @return txt emssage
-     */
-    public function checkEmail($request)
-    {
-        $email = Eomembers::where('email', '=', $request)->first();
-        if ( $email === null ) {
-            return response()->json(['message' => 'Email does not exist']);
-        } else {
-            return response()->json(['message' => 'Email exists']);
-        }
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

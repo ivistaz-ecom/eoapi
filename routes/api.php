@@ -12,6 +12,7 @@ use App\Http\Controllers\API\OfferPackageController;
 use App\Http\Controllers\API\SlpRegController;
 use App\Http\Controllers\API\SlpPrefController;
 use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\CheckEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
+// Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('eomembers', MemberController::class);
     Route::apiResource('chapters', ChapterController::class);
     Route::apiResource('regions', RegionController::class);
@@ -42,5 +43,6 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('slp-registration', SlpRegController::class);
     Route::apiResource('slp-preference', SlpPrefController::class);
     Route::apiResource('payment-info', PaymentController::class);
-    Route::get('check-email', [MemberController::class, 'checlEmail']);
-});
+    Route::resource('email', CheckEmailController::class);
+    Route::post('email/check-email', [CheckEmailController::class, 'checkEmail']);
+// });
