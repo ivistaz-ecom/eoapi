@@ -27,10 +27,8 @@ class StorePreferenceRequest extends FormRequest
             'eoid' => 'required',
             'flyingfrom' => 'required',
             'dietpref' => 'required',
-            'allergies' => 'required',
             'shirtsize' => 'required',
-            'interests' => 'required|array',
-            'specialrequest' => 'required'
+            'interests' => 'required|array'
         ];
     }
 }
