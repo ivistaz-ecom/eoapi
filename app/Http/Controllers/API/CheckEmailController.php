@@ -49,7 +49,7 @@ class CheckEmailController extends Controller
             ->where('eventdetail.offerstatus', '=', 'y')
             ->select('eventdetail.eventname', 'eventdetail.offerstatus', 'eochapters.chapters')
             ->get();
-            if ($event === null) {
+            if ($event->count()<1) {
                 $event = 'No event running';
             }
             return response()->json(['message' => 'Email exists','data' => 'true','eomembers' => $eomembers, 'event' => $event]);
