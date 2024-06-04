@@ -25,6 +25,34 @@ class OfferPackageController extends Controller
     }
 
     /**
+     * Book offer
+     */
+    public function addBooking($id)
+    {
+        $package = OfferPackages::find($id);
+        if ($package->increment('numbooked')) {
+            $numbooked = OfferPackages::where('id', $id)->pluck('numbooked');
+            return response()->json(['message' => 'Offer applied', 'nombooked' => $numbooked]);
+        } else {
+            return response()->json(['message' => 'offer add failed']);
+        }
+    }
+
+    /**
+     * UnBook offer
+     */
+    public function removeBooking($id)
+    {
+        $package = OfferPackages::find($id);
+        if ($package->decrement('numbooked')) {
+            $numbooked = OfferPackages::where('id', $id)->pluck('numbooked');
+            return response()->json(['message' => 'Offer removed', 'nombooked' => $numbooked]);
+        } else {
+            return response()->json(['message' => 'offer remove failed']);
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
