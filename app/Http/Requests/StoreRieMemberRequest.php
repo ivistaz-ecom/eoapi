@@ -29,9 +29,20 @@ class StoreRieMemberRequest extends FormRequest
             'mobile' => 'required',
             'industry' => 'required',
             'company' => 'required',
-            'companyaddr' => 'required',
             'spouseid' => 'required',
-            'regstatus' => 'required'
+            'regstatus' => 'required',
+            'addr1' => 'required',
+            'addr2' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'pin' => 'required',
+            'country' => 'required',
+            'comaddr1' => 'required',
+            'comaddr2' => 'required',
+            'comcity' => 'required',
+            'comstate' => 'required',
+            'compin' => 'required',
+            'comcountry' => 'required'
         ];
     }
 }

@@ -15,8 +15,19 @@ class RieMembers extends Model
         'industry',
         'company',
         'gstno',
-        'companyaddr',
         'spouseid',
-        'regstatus'
+        'regstatus',
+        'addr1',
+        'addr2',
+        'city',
+        'state',
+        'pin',
+        'country',
+        'comaddr1',
+        'comaddr2',
+        'comcity',
+        'comstate',
+        'compin',
+        'comcountry'
     ];
 }
