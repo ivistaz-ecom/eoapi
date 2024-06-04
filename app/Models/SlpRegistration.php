@@ -11,6 +11,7 @@ class SlpRegistration extends Model
     protected $fillable = [
         'firstname',
         'lastname',
+        'email',
         'gender',
         'mobile',
         'industry',
