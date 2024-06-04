@@ -15,9 +15,14 @@ class SlpRegistration extends Model
         'mobile',
         'industry',
         'company',
-        'companyaddr',
         'gstno',
         'regstatus',
-        'eoid'
+        'eoid',
+        'addr1',
+        'addr2',
+        'city',
+        'state',
+        'pin',
+        'country'
     ];
 }
