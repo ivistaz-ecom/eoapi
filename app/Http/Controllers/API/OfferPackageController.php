@@ -20,17 +20,18 @@ class OfferPackageController extends Controller
         $packages = OfferPackages::where('offerstatus', 'y')
             ->where('strdt', '<=', $date)
             ->where('enddt', '>=', $date)
-            ->get();
+            ->where('numbooked', '<=', 'offercount')
+            ->min('packageorder');
         return response()->json(['packages' => $packages]);
     }
 
     /**
      * Book offer
      */
-    public function addBooking($id)
+    public function addBooking($id, $num)
     {
         $package = OfferPackages::find($id);
-        if ($package->increment('numbooked')) {
+        if ($package->increment('numbooked', $num)) {
             $numbooked = OfferPackages::where('id', $id)->pluck('numbooked');
             return response()->json(['message' => 'Offer applied', 'nombooked' => $numbooked]);
         } else {
@@ -41,10 +42,10 @@ class OfferPackageController extends Controller
     /**
      * UnBook offer
      */
-    public function removeBooking($id)
+    public function removeBooking($id, $num)
     {
         $package = OfferPackages::find($id);
-        if ($package->decrement('numbooked')) {
+        if ($package->decrement('numbooked', $num)) {
             $numbooked = OfferPackages::where('id', $id)->pluck('numbooked');
             return response()->json(['message' => 'Offer removed', 'nombooked' => $numbooked]);
         } else {
