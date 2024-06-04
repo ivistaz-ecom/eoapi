@@ -40,8 +40,8 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('rie-member', RieMemberController::class);
     Route::apiResource('member-preference', MemberPrefController::class);
     Route::apiResource('offer-packages', OfferPackageController::class);
-    Route::post('offer-packages/addbooking/{id}', [OfferPackageController::class, 'addBooking']);
-    Route::post('offer-packages/removebooking/{id}', [OfferPackageController::class, 'removeBooking']);
+    Route::post('offer-packages/addbooking/{id}/{num}', [OfferPackageController::class, 'addBooking']);
+    Route::post('offer-packages/removebooking/{id}/{num}', [OfferPackageController::class, 'removeBooking']);
     Route::apiResource('slp-registration', SlpRegController::class);
     Route::apiResource('slp-preference', SlpPrefController::class);
     Route::apiResource('payment-info', PaymentController::class);
