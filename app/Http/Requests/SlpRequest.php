@@ -26,6 +26,7 @@ class SlpRequest extends FormRequest
         return [
             'firstname' => 'required',
             'lastname' => 'required',
+            'email' => 'required',
             'gender' => 'required',
             'mobile' => 'required',
             'regstatus' => 'required',
