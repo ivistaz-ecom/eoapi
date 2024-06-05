@@ -20,8 +20,7 @@ class OfferPackageController extends Controller
         $packages = OfferPackages::where('offerstatus', 'y')
             ->where('strdt', '<=', $date)
             ->where('enddt', '>=', $date)
-            ->where('numbooked', '<=', 'offercount')
-            ->min('packageorder');
+            ->get();
         return response()->json(['packages' => $packages]);
     }
 
