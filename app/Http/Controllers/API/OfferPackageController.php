@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\OfferPackageRequest;
 use App\Models\OfferPackages;
+use Illuminate\Support\Facades\DB;
 
 class OfferPackageController extends Controller
 {
@@ -17,11 +18,12 @@ class OfferPackageController extends Controller
     public function index()
     {
         $date = date('Y-m-d');
-        $packages = OfferPackages::where('offerstatus', 'y')
-            // ->where('strdt', '<=', $date)
-            // ->where('enddt', '>=', $date)
-            ->where('numbooked', '<=', 'offercount')
-            ->take(1)->get();
+        // $packages = OfferPackages::where('offerstatus', 'y')
+        //     // ->where('strdt', '<=', $date)
+        //     // ->where('enddt', '>=', $date)
+        //     ->where('numbooked', '<=', 'offercount')
+        //     ->take(1)->get();
+        $packages = DB::select(DB::raw("SELECT * FROM `offerpackages` WHERE numbooked < offercount LIMIT 1"));
         return response()->json(['packages' => $packages]);
     }
 
