@@ -11,6 +11,7 @@ use App\Models\RieMembersPref;
 use App\Models\Eomembers;
 use App\Models\SlpRegistration;
 use App\Models\SlpPreferences;
+use App\Models\RegCountModel;
 
 class PaymentController extends Controller
 {
@@ -32,13 +33,12 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        // $paymentstatus = $request->paymentstatus;
-        // $eoid = $request->eoid;
+        $regcount = RegCountModel::get();
         $payment = PaymentInfo::create($request->all());
 
         if ($request->paymentstatus == 'success') {
 
-            if (PaymentInfo::sum('memcount') > 999) {
+            if (PaymentInfo::sum('memcount') > $regcount->regcount) {
                 $regstatus = 'waiting';
             } else {
                 $regstatus = 'true';
