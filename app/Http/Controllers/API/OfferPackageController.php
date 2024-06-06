@@ -18,10 +18,10 @@ class OfferPackageController extends Controller
     {
         $date = date('Y-m-d');
         $packages = OfferPackages::where('offerstatus', 'y')
-            ->where('strdt', '<=', $date)
-            ->where('enddt', '>=', $date)
+            // ->where('strdt', '<=', $date)
+            // ->where('enddt', '>=', $date)
             ->where('numbooked', '<=', 'offercount')
-            ->first();
+            ->take(1)->get();
         return response()->json(['packages' => $packages]);
     }
 
