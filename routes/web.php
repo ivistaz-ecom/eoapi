@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ChapterController;
 use App\Http\Controllers\Backend\OfferPackagesController;
 use App\Http\Controllers\Backend\PaymentInfoController;
+use App\Http\Controllers\Backend\RegCountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-offer/{id}', [OfferPackagesController::class, 'destroy'])->name('delete-offer');
 
     Route::get('payments', [PaymentInfoController::class, 'index'])->name('payments');
+
+    Route::get('registration-count', [RegCountController::class, 'index'])->name('registration-count');
+    Route::get('show-regcount/{id}', [RegCountController::class, 'show'])->name('show-regcount');
+    Route::get('edit-regcount/{id}', [RegCountController::class, 'edit'])->name('edit-regcount');
+    Route::post('update-regcount', [RegCountController::class, 'update'])->name('update-regcount');
+    Route::get('delete-regcount/{id}', [RegCountController::class, 'delete'])->name('delete-regcount');
 });
