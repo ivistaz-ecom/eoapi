@@ -37,17 +37,24 @@ class PaymentController extends Controller
         $payment = PaymentInfo::create($request->all());
 
         if ($request->paymentstatus == 'success') {
-             RieMembers::where('eoid', $request->eoid)->update([
+
+            if (PaymentInfo::sum('memcount') > 999) {
+                $regstatus = 'waiting';
+            } else {
+                $regstatus = 'true';
+            }
+
+            RieMembers::where('eoid', $request->eoid)->update([
                 'spouseid' => $request->spouseid,
-                'regstatus' => $request->memregstatus
+                'regstatus' => $regstatus
             ]);
             Eomembers::where('id', $request->eoid)->update([
                 'spouse_id' => $request->spouseid,
                 'spouse_status' => $request->spousestatus,
-                'regstatus' => $request->memregstatus
+                'regstatus' => $regstatus
             ]);
             SlpRegistration::where('eoid', $request->eoid)->update([
-                'regstatus' => $request->spousestatus
+                'regstatus' => $regstatus
             ]);
             if ($request->voucher > 0) {
                 Eomembers::where('id', $request->eoid)->update([
