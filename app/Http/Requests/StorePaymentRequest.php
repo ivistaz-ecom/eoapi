@@ -41,7 +41,8 @@ class StorePaymentRequest extends FormRequest
             'txnid' => 'required',
             'paymentstatus' => 'required',
             'memregstatus' => 'required',
-            'eoid' => 'required'
+            'eoid' => 'required',
+            'memcount' => 'required'
         ];
     }
 }

@@ -26,6 +26,7 @@ class PaymentInfo extends Model
         'txnid',
         'paymentstatus',
         'memregstatus',
-        'eoid'
+        'eoid',
+        'memcount'
     ];
 }
