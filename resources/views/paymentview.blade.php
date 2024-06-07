@@ -73,6 +73,10 @@
                             <td>Member Count</td>
                             <td>{{ $payment->memcount }}</td>
                         </tr>
+                        <tr>
+                            <td>Payment Time</td>
+                            <td>{{ $payment->created_at }}</td>
+                        </tr>
                     </table>
                     <a href="{{ route('payments') }}" class="btn btn-primary btn-sm">All Payments</a>
                 </div>
