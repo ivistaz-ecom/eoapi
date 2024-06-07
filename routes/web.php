@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-offer/{id}', [OfferPackagesController::class, 'destroy'])->name('delete-offer');
 
     Route::get('payments', [PaymentInfoController::class, 'index'])->name('payments');
-    Route::get('payment-detail', [PaymentInfoController::class, 'show'])->name('payment-detail');
+    Route::get('payment-detail/{id}', [PaymentInfoController::class, 'show'])->name('payment-detail');
 
     Route::get('registration-count', [RegCountController::class, 'index'])->name('registration-count');
     Route::get('show-regcount/{id}', [RegCountController::class, 'show'])->name('show-regcount');
