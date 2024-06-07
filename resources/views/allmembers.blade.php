@@ -11,6 +11,7 @@
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
+                        <td>ID</td>
                         <td>Name</td>
                         <td>Email</td>
                         <td>Chapter</td>
@@ -20,6 +21,7 @@
                 </thead>
                 @foreach ($members as $member)
                 <tr>
+                    <td>{{ $member->ID }}</td>
                     <td>{{ $member->firstname }}</td>
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->chapter }}</td>
