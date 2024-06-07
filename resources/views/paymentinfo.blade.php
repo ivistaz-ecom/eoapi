@@ -11,6 +11,7 @@
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
+                        <td>SL no</td>
                         <td>First Name</td>
                         <td>Last Name</td>
                         <td>Region</td>
@@ -21,6 +22,7 @@
                 </thead>
                 @foreach ($payments as $payment)
                 <tr>
+                    <td>{{ $payment->id }}</td>
                     <td>{{ $payment->firstname }}</td>
                     <td>{{ $payment->lastname }}</td>
                     <td>{{ $payment->region }}</td>
