@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4 style="display:inline">Payments</h4> <a href="" class="btn btn-primary btn-sm float-right">All Offers</a>
+            <h4 style="display:inline">Payments</h4>
             @if (session('message'))
                 <h6 class="text-success">{{ session('message') }}</h6>
             @endif
