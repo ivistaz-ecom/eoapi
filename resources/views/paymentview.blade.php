@@ -15,7 +15,7 @@
                         </tr>
                         <tr>
                             <td>Lastname</td>
-                            <td>{{ $cpayment->lastname }}</td>
+                            <td>{{ $payment->lastname }}</td>
                         </tr>
                         <tr>
                             <td>Region</td>
@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td>Amount</td>
-                            <td>{{ $cpayment->amount }}</td>
+                            <td>{{ $payment->amount }}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <td>Phone</td>
-                            <td>{{ $cpayment->phone }}</td>
+                            <td>{{ $payment->phone }}</td>
                         </tr>
                         <tr>
                             <td>Company</td>
@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <td>Company Address</td>
-                            <td>{{ $cpayment->companyaddr }}</td>
+                            <td>{{ $payment->companyaddr }}</td>
                         </tr>
                         <tr>
                             <td>Currency</td>
@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <td>Voucher Amount</td>
-                            <td>{{ $cpayment->amount }}</td>
+                            <td>{{ $payment->amount }}</td>
                         </tr>
                         <tr>
                             <td>Expr Date</td>
@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td>Spouse Status</td>
-                            <td>{{ $cpayment->spousestatus }}</td>
+                            <td>{{ $payment->spousestatus }}</td>
                         </tr>
                         <tr>
                             <td>Transaction ID</td>
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td>Payment Status</td>
-                            <td>{{ $cpayment->paymentstatus }}</td>
+                            <td>{{ $payment->paymentstatus }}</td>
                         </tr>
                         <tr>
                             <td>Registration Status</td>
@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                             <td>Member Count</td>
-                            <td>{{ $cpayment->memcount }}</td>
+                            <td>{{ $payment->memcount }}</td>
                         </tr>
                     </table>
                 </div>
