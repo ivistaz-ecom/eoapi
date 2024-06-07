@@ -21,7 +21,7 @@
                 </thead>
                 @foreach ($members as $member)
                 <tr>
-                    <td>{{ $member->ID }}</td>
+                    <td>{{ $member->id }}</td>
                     <td>{{ $member->firstname }}</td>
                     <td>{{ $member->email }}</td>
                     <td>{{ $member->chapter }}</td>
