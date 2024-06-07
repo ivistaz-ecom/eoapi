@@ -67,13 +67,14 @@
                         </tr>
                         <tr>
                             <td>Registration Status</td>
-                            <td>{{ $payment->regstatus }}</td>
+                            <td>{{ $payment->memregstatus }}</td>
                         </tr>
                         <tr>
                             <td>Member Count</td>
                             <td>{{ $payment->memcount }}</td>
                         </tr>
                     </table>
+                    <a href="{{ route('payments') }}" class="btn btn-primary btn-sm">All Payments</a>
                 </div>
             </div>
         </div>
