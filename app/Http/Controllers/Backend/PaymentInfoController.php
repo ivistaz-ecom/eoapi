@@ -83,6 +83,7 @@ class PaymentInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PaymentInfo::destroy($id);
+        return \Redirect::route('payments')->with(['message' => 'Payment deleted successfully']);
     }
 }

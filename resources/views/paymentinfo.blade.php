@@ -28,7 +28,7 @@
                     <td>{{ $payment->region }}</td>
                     <td>{{ $payment->amount }}</td>
                     <td>{{ $payment->email }}</td>
-                    <td><a href="{{ route('payment-detail', $payment->id) }}"><i class="bi bi-eye"></i></a>&nbsp;<a href=""><i class="bi bi-pencil"></i></a>&nbsp;<a href="" onclick="return confirm('Are you sure you want to delete this member?');"><i class="bi bi-trash"></i></a></td>
+                    <td><a href="{{ route('payment-detail', $payment->id) }}"><i class="bi bi-eye"></i></a>&nbsp;<a href=""><i class="bi bi-pencil"></i></a>&nbsp;<a href="{{ route('delete-payment', $payment->id) }}" onclick="return confirm('Are you sure you want to delete this payment?');"><i class="bi bi-trash"></i></a></td>
                 </tr>
                 @endforeach
             </table>
