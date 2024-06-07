@@ -48,7 +48,8 @@ class PaymentInfoController extends Controller
      */
     public function show($id)
     {
-        //
+        $payment = PaymentInfo::find($id);
+        return view('paymentview', ['payment' => $payment]);
     }
 
     /**
