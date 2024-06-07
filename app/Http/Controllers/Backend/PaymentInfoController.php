@@ -15,7 +15,7 @@ class PaymentInfoController extends Controller
      */
     public function index()
     {
-        $payment = PaymentInfo::orderBy('id', 'ASC')->paginate(12);
+        $payment = PaymentInfo::orderBy('id', 'DESC')->paginate(12);
         return view('paymentinfo', ['payments' => $payment]);
     }
 
