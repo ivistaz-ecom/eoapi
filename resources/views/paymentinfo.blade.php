@@ -30,6 +30,7 @@
                 </tr>
                 @endforeach
             </table>
+            {!! $payments->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>
