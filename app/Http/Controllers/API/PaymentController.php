@@ -33,7 +33,7 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        $regcount = RegCountModel::get();
+        $regcount = RegCountModel::first();
         $payment = PaymentInfo::create($request->all());
 
         if ($request->paymentstatus == 'success') {

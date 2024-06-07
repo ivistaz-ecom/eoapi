@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ChapterController;
 use App\Http\Controllers\Backend\OfferPackagesController;
 use App\Http\Controllers\Backend\PaymentInfoController;
 use App\Http\Controllers\Backend\RegCountController;
+use App\Http\Controllers\Backend\RieRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-regcount/{id}', [RegCountController::class, 'edit'])->name('edit-regcount');
     Route::post('update-regcount', [RegCountController::class, 'update'])->name('update-regcount');
     Route::get('delete-regcount/{id}', [RegCountController::class, 'delete'])->name('delete-regcount');
+
+    Route::get('rie-members', [RieRegistrationController::class, 'index'])->name('rie-members');
+    Route::get('rie-member/{id}', [RieRegistrationController::class, 'show'])->name('rie-member');
 });
