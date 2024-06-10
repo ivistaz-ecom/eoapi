@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Eomembers;
-use App\Models\Chapters;
-use App\Models\Regions;
+use App\Models\OfferPackages;
+use App\Models\PaymentInfo;
+use App\Models\RieMembers;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,9 +29,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $members = Eomembers::count();
-        $chapters = Chapters::count();
-        $regions = Regions::count();
-        return view('home', ["members" => $members, 'chapters' => $chapters, 'regions' => $regions]);
+        $members = RieMembers::count();
+        $payment = PaymentInfo::count();
+        $offers = OfferPackages::count();
+        $regmembers = DB::table('eomembers')
+        ->leftJoin('riemembers', 'eomembers.id', '=', 'riemembers.eoid')
+        ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eomembers.email', 'eomembers.regstatus', 'paymentinfo.company', 'paymentinfo.currency', 'paymentinfo.amount', 'paymentinfo.paymentstatus')
+        ->where('paymentinfo.paymentstatus', '=', 'success');
+        return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers]);
     }
 }
