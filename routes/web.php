@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ChapterController;
+use App\Http\Controllers\Backend\RegionController;
 use App\Http\Controllers\Backend\OfferPackagesController;
 use App\Http\Controllers\Backend\PaymentInfoController;
 use App\Http\Controllers\Backend\RegCountController;
@@ -55,6 +56,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-offer/{id}', [OfferPackagesController::class, 'edit'])->name('edit-offer');
     Route::post('update-offer', [OfferPackagesController::class, 'update'])->name('update-offer');
     Route::get('delete-offer/{id}', [OfferPackagesController::class, 'destroy'])->name('delete-offer');
+
+    Route::get('regions', [RegionController::class, 'index'])->name('regions');
+    Route::get('delete-region/{id}', [RegionController::class, 'destroy'])->name('delete-region');
+    Route::get('show-region/{id}', [RegionController::class, 'show'])->name('show-region');
 
     Route::get('payments', [PaymentInfoController::class, 'index'])->name('payments');
     Route::get('payment-detail/{id}', [PaymentInfoController::class, 'show'])->name('payment-detail');

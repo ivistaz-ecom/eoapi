@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Regions;
 
 class RegionController extends Controller
 {
@@ -14,7 +15,8 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $regions = Regions::paginate(10);
+        return view('regions', ['regions' => $regions]);
     }
 
     /**
@@ -46,7 +48,8 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        //
+        $region = Regions::find($id);
+        return view('showregion', ['region' => $region]);
     }
 
     /**
@@ -80,6 +83,7 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Regions::destroy($id);
+        return \Redirect::route('regions')->with(['message' => 'Region deleted successfully']);
     }
 }
