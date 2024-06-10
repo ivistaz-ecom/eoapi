@@ -24,6 +24,7 @@
                 </tr>
                 @endforeach
             </table>
+            {!! $chapters->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>

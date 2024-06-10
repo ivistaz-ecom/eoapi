@@ -15,7 +15,7 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        $chapters = Chapters::get();
+        $chapters = Chapters::paginate(10);
         return view('chapters', ['chapters' => $chapters]);
     }
 
