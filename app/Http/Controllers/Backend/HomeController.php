@@ -32,7 +32,7 @@ class HomeController extends Controller
         $members = RieMembers::count();
         $payment = PaymentInfo::count();
         $offers = OfferPackages::count();
-        $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eomembers.email, eomembers.regstatus, paymentinfo.company, paymentinfo.currency, paymentinfo.amount FROM eomembers LEFT JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success'"));
+        $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eomembers.email, eomembers.regstatus, paymentinfo.company, paymentinfo.currency, paymentinfo.amount FROM eomembers LEFT JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by eomembers.id DESC"));
         return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers]);
     }
 }
