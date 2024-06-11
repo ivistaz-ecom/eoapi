@@ -61,6 +61,5 @@
         @php($count--)
         @endforeach
     </table>
-    {!! $members->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @endsection
