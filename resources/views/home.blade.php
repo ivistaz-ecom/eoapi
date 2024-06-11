@@ -46,8 +46,8 @@
                 <td>Edit</td>
             </tr>
         </thead>
-        @foreach ($regmembers as $member)
         @php($count=0)
+        @foreach ($regmembers as $member)
         <tr>
             <td>{{ $count }}</td>
             <td>{{ $member->firstname }}</td>
