@@ -32,7 +32,7 @@ class HomeController extends Controller
         $members = PaymentInfo::count();
         $payment = DB::table('paymentinfo')->where('paymentstatus', '=', 'success')->sum('memcount');
         $offers = OfferPackages::count();
-        $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eomembers.email, eomembers.regstatus, paymentinfo.company, paymentinfo.currency, paymentinfo.amount FROM eomembers LEFT JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by paymentinfo.id DESC"));
+        $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eochapters.chapters, eoregions.region, paymentinfo.currency, paymentinfo.amount, paymentinfo.created_at FROM eomembers LEFT JOIN eochapters ON eomembers.chapter = eochapters.id LEFT JOIN eoregions ON eomembers.region = eoregions.id left JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by paymentinfo.id DESC"));
         return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers]);
     }
 }
