@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $members = RieMembers::count();
-        $payment = PaymentInfo::sum('memcount');
+        $payment = DB::table('paymentinfo')->where('paymentstatus', '=', 'success')->sum('memcount');
         $offers = OfferPackages::count();
         $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eomembers.email, eomembers.regstatus, paymentinfo.company, paymentinfo.currency, paymentinfo.amount FROM eomembers LEFT JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by paymentinfo.id DESC"));
         return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers]);
