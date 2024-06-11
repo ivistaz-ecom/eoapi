@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Total registered members</h5>
                         <p class="card-text">{{ $members }}</p>
-                        <a href="{{ route('members') }}" class="btn btn-primary">View Members</a>
+                        <a href="{{ route('rie-members') }}" class="btn btn-primary">Registered Members</a>
                     </div>
                 </div>
             </div>
