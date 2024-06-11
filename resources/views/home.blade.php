@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total registered members</h5>
-                        <p class="card-text">{{ $members }}</p>
+                        <p class="card-text">{{ $payment }}</p>
                         <a href="{{ route('rie-members') }}" class="btn btn-primary">Registered Members</a>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Total payments</h5>
-                        <p class="card-text">{{ $payment }}</p>
+                        <p class="card-text">{{ $members }}</p>
                         <a href="{{ route('payments') }}" class="btn btn-primary">View Payments</a>
                     </div>
                 </div>
