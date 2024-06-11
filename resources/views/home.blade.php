@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Total payments</h5>
                         <p class="card-text">{{ $payment }}</p>
-                        <a href="{{ route('chapters') }}" class="btn btn-primary">View Payments</a>
+                        <a href="{{ route('payments') }}" class="btn btn-primary">View Payments</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Offers</h5>
                         <p class="card-text">{{ $offers }}</p>
-                        <a href="#" class="btn btn-primary">View Offers</a>
+                        <a href="{{ route('offers') }}" class="btn btn-primary">View Offers</a>
                     </div>
                 </div>
             </div>
