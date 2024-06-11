@@ -83,6 +83,7 @@ class RieRegistrationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RieMembers::destroy($id);
+        return \Redirect::route('rie-members')->with(['message' => 'Member deleted successfully']);
     }
 }
