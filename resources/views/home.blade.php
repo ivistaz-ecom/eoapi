@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h4>Dashboard</h4>
-        
     <div class="row">
         <div class="col-md-4 justify-content-center">
             <div class="card">
@@ -61,5 +60,6 @@
         @php($count--)
         @endforeach
     </table>
+    {!! $regmembers->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @endsection
