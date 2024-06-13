@@ -48,7 +48,7 @@
         <!-- @php($count=count($regmembers)) -->
         @foreach ($regmembers as $member)
         <tr>
-            <td>{{ $count }}</td>
+            <td>{{ $member->id }}</td>
             <td>{{ $member->firstname }}</td>
             <td>{{ $member->lastname }}</td>
             <td>{{ $member->chapters }}</td>
@@ -57,7 +57,7 @@
             <td>{{ $member->created_at }}</td>
             <td><a href="{{ route('show-member', $member->id) }}"><i class="bi bi-eye"></i></a>&nbsp;<a href="{{ route('edit-member', $member->id) }}"><i class="bi bi-pencil"></i></a>&nbsp;<a href="{{ route('delete-member', $member->id) }}" onclick="return confirm('Are you sure you want to delete this member?');"><i class="bi bi-trash"></i></a></td>
         </tr>
-        @php($count--)
+        <!-- @php($count--) -->
         @endforeach
     </table>
     {!! $regmembers->withQueryString()->links('pagination::bootstrap-5') !!}
