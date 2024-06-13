@@ -38,7 +38,8 @@ class HomeController extends Controller
         ->leftJoin('paymentinfo','eomembers.id', 'paymentinfo.eoid')
         ->select('eomembers.id', 'eomembers.firstname', 'eomembers.lastname', 'eochapters.chapters', 'eoregions.region', 'paymentinfo.currency', 'paymentinfo.amount', 'paymentinfo.created_at')
         ->where('paymentinfo.paymentstatus', 'success')->orderBy('eomembers.id', 'desc')->paginate(10);
+        $regcount = Count($regmembers);
         // $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eochapters.chapters, eoregions.region, paymentinfo.currency, paymentinfo.amount, paymentinfo.created_at FROM eomembers LEFT JOIN eochapters ON eomembers.chapter = eochapters.id LEFT JOIN eoregions ON eomembers.region = eoregions.id left JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by paymentinfo.id DESC"));
-        return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers]);
+        return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers, 'count' => $regcount]);
     }
 }
