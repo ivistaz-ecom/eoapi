@@ -127,6 +127,13 @@
                     <span>Reports</span></a>
             </li>
 
+            <!-- Admin Users - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin-users') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Admin Users</span></a>
+            </li>
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('registration-count') }}">

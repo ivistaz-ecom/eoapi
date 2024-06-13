@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\OfferPackagesController;
 use App\Http\Controllers\Backend\PaymentInfoController;
 use App\Http\Controllers\Backend\RegCountController;
 use App\Http\Controllers\Backend\RieRegistrationController;
+use App\Http\Controllers\Backend\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,4 +74,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('rie-members', [RieRegistrationController::class, 'index'])->name('rie-members');
     Route::get('rie-member/{id}', [RieRegistrationController::class, 'show'])->name('rie-member');
+
+    Route::get('admin-users', [AdminUserController::class, 'index'])->name('admin-users');
+    Route::get('add-user', [AdminUserController::class, 'create'])->name('add-user');
+    Route::post('store-user', [AdminUserController::class, 'store'])->name('store-user');
+    Route::get('show-user/{id}', [AdminUserController::class, 'show'])->name('show-user');
+    Route::post('update-user', [AdminUserController::class, 'update'])->name('update-user');
+    Route::get('edit-user/{id}', [AdminUserController::class, 'edit'])->name('edit-user');
+    Route::get('delete-user/{id}', [AdminUserController::class, 'destroy'])->name('delete-user');
 });
