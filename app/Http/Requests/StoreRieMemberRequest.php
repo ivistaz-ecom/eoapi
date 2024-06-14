@@ -34,12 +34,10 @@ class StoreRieMemberRequest extends FormRequest
             'addr1' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'pin' => 'required',
             'country' => 'required',
             'comaddr1' => 'required',
             'comcity' => 'required',
             'comstate' => 'required',
-            'compin' => 'required',
             'comcountry' => 'required'
         ];
     }

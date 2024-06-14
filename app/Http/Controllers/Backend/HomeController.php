@@ -42,4 +42,29 @@ class HomeController extends Controller
         // $regmembers = DB::select(DB::raw("SELECT eomembers.id, eomembers.firstname, eomembers.lastname, eochapters.chapters, eoregions.region, paymentinfo.currency, paymentinfo.amount, paymentinfo.created_at FROM eomembers LEFT JOIN eochapters ON eomembers.chapter = eochapters.id LEFT JOIN eoregions ON eomembers.region = eoregions.id left JOIN paymentinfo ON eomembers.id = paymentinfo.eoid WHERE paymentinfo.paymentstatus = 'success' order by paymentinfo.id DESC"));
         return view('home', ["members" => $members, 'payment' => $payment, 'offers' => $offers, 'regmembers' => $regmembers, 'count' => $regcount]);
     }
+
+    /**
+     * Method to handle search
+     * Search based on email or member id
+     * @param id string or int
+     * 
+     * @return user data
+     */
+    public function searchmember (Request $request) {
+        if ($request === null) {
+            return view('searchresult', ['data' => 'Please enter search key']);
+        }
+
+        if (is_int($request->search)) {
+            $member = Eomembers::where('id', $request->search);
+        } elseif (is_string($request->search)) {
+            $member = Eomembers::where('email', $request->search)->get();
+        }
+
+        if ($member->isEmpty()) {
+            return view('searchresult', ['data' => 'No data found']);
+        } else {
+            return view('searchresult', ['data' => $member]);
+        }
+    }
 }
