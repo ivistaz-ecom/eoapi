@@ -82,8 +82,8 @@ class PaymentInfoController extends Controller
      * 
      */
     public function downloaddata () {
-        $data = DB::table('paymentinfo')
-        ->leftJoin('riemembers', 'paymentinfo.eoid', 'riemembers.eoid')
+        $data = DB::table('riemembers')
+        ->leftJoin('paymentinfo', 'paymentinfo.eoid', 'riemembers.eoid')
         ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.phone', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
         ->where('paymentinfo.paymentstatus', 'success')
         ->get();
