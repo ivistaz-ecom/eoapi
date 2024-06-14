@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('payments', [PaymentInfoController::class, 'index'])->name('payments');
     Route::get('payment-detail/{id}', [PaymentInfoController::class, 'show'])->name('payment-detail');
+    Route::get('download-payment-data', [PaymentInfoController::class, 'downloaddata'])->name('download-payment-data');
     Route::get('delete-payment/{id}', [PaymentInfoController::class, 'destroy'])->name('delete-payment');
 
     Route::get('registration-count', [RegCountController::class, 'index'])->name('registration-count');
