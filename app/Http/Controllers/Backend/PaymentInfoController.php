@@ -87,8 +87,7 @@ class PaymentInfoController extends Controller
         ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
         ->where('paymentinfo.paymentstatus', 'success')
         ->get();
-        // $data = DB::select(DB::raw("SELECT paymentinfo.firstname, paymentinfo.lastname, paymentinfo.email, paymentinfo.region, paymentinfo.amount, paymentinfo.txnid, paymentinfo.company, riemembers.addr1, riemembers.addr2, riemembers.city, riemembers.state, riemembers.pin, riemembers.country, riemembers.spouseid, riemembers.eoid, paymentinfo.created_at FROM paymentinfo LEFT JOIN riemembers ON paymentinfo.eoid = riemembers.eoid WHERE paymentinfo.paymentstatus = 'success'"));
-        dd($data);
+        
         // Name of the downloaded file
         $fileName = 'paymentdata.csv';
 
