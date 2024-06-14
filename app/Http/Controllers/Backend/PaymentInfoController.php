@@ -86,6 +86,7 @@ class PaymentInfoController extends Controller
         ->leftJoin('paymentinfo', 'paymentinfo.eoid', 'riemembers.eoid')
         ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.phone', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
         ->where('paymentinfo.paymentstatus', 'success')
+        ->groupBy('paymentinfo.txnid')
         ->get();
         
         // Name of the downloaded file
