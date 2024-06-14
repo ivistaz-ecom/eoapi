@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('save-data', [MemberController::class, 'store'])->name('save-data');
     Route::get('delete-member/{id}', [MemberController::class, 'destroy'])->name('delete-member');
 
+    Route::post('search-result', [HomeController::class, 'searchmember'])->name('searchmember');
+
     Route::get('chapters', [ChapterController::class, 'index'])->name('chapters');
     Route::get('show-chapter/{id}', [ChapterController::class, 'show'])->name('show-chapter');
     Route::get('edit-chapter/{id}', [ChapterController::class, 'edit'])->name('edit-chapter');
