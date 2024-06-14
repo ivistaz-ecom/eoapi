@@ -51,20 +51,21 @@ class HomeController extends Controller
      * @return user data
      */
     public function searchmember (Request $request) {
-        if ($request === null) {
-            return view('searchresult', ['data' => 'Please enter search key']);
+        if (empty($request->search)) {
+            return view('searchresult', ['member' => 'Please enter search key']);
         }
 
-        if (is_int($request->search)) {
-            $member = Eomembers::where('id', $request->search);
+        if (is_integer($request->search)) {
+            $member = Eomembers::where('id', $request->search)->get();
         } elseif (is_string($request->search)) {
             $member = Eomembers::where('email', $request->search)->get();
         }
 
-        if ($member->isEmpty()) {
-            return view('searchresult', ['data' => 'No data found']);
+        if (count((array)$member) === 0) {
+            return view('searchresult', ['member' => 'No data found']);
         } else {
-            return view('searchresult', ['data' => $member]);
+            return view('searchresult', ['member' => $member]);
         }
+        // return view('searchresult', ['data' => $request->search]);
     }
 }
