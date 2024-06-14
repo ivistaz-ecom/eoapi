@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PaymentInfo;
+use Illuminate\Support\Facades\DB;
 
 class PaymentInfoController extends Controller
 {
@@ -73,6 +74,64 @@ class PaymentInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * Download payment info
+     * in csv format
+     * 
+     */
+    public function downloaddata () {
+        $data = DB::table('paymentinfo')
+        ->leftJoin('riemembers', 'paymentinfo.eoid', 'riemembers.eoid')
+        ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
+        ->where('paymentinfo.paymentstatus', 'success')
+        ->get();
+        // $data = DB::select(DB::raw("SELECT paymentinfo.firstname, paymentinfo.lastname, paymentinfo.email, paymentinfo.region, paymentinfo.amount, paymentinfo.txnid, paymentinfo.company, riemembers.addr1, riemembers.addr2, riemembers.city, riemembers.state, riemembers.pin, riemembers.country, riemembers.spouseid, riemembers.eoid, paymentinfo.created_at FROM paymentinfo LEFT JOIN riemembers ON paymentinfo.eoid = riemembers.eoid WHERE paymentinfo.paymentstatus = 'success'"));
+        dd($data);
+        // Name of the downloaded file
+        $fileName = 'paymentdata.csv';
+
+        // Headers
+        $headers = array(
+            "Content-type"        => "text/csv;charset=UTF-8",
+            "Content-Encoding"    => "UTF-8",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        // Column names of the CSV fie
+        $columns = array('First Name', 'Last Name', 'Region', 'Amount', 'TXN ID', 'Email', 'Company', 'Address 1', 'Address 2', 'City', 'State', 'PIN', 'Country', 'eoid', 'Spouse ID', 'Create Dt');
+
+        $callback = function() use($data, $columns) {
+            $file = fopen('php://output', 'w');
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            fputcsv($file, $columns);
+            foreach ($data as $task) {
+                fputcsv($file, [
+                    $task->firstname,
+                    $task->lastname,
+                    $task->region,
+                    $task->amount,
+                    $task->txnid,
+                    $task->email,
+                    $task->company,
+                    $task->addr1,
+                    $task->addr2,
+                    $task->city,
+                    $task->state,
+                    $task->pin,
+                    $task->country,
+                    $task->eoid,
+                    $task->spouseid,
+                    $task->created_at
+                ]);
+            }
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
     }
 
     /**
