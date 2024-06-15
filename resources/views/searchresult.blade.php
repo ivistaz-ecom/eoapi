@@ -6,13 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Member Detail') }}</div>
-                
+                @if ($member === 'none')
+                <div class="card-body">Please search key</div>
+                @elseif ($member->count() == 0)
+                <div class="card-body">No result found</div>
+                @else
                 <div class="card-body">
-                    @if ($member === 'Please enter search key')
-                    Please enter search key
-                    @elseif ( empty($member) )
-                    No data found
-                    @esle
                     <table class="table table-striped mt-4">
                         <tr>
                             <td>First Name</td>
