@@ -55,7 +55,7 @@ class HomeController extends Controller
             return view('searchresult', ['member' => 'none']);
         }
 
-        if (is_integer($request->search)) {
+        if (is_int((int)$request->search)) {
             $member = Eomembers::where('id', $request->search)->get();
         } elseif (is_string($request->search)) {
             $member = Eomembers::where('email', $request->search)->get();
