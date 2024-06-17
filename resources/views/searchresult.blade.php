@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <td>Spouse ID</td>
-                        <td>{{ $member[0]->spouse }}</td>
+                        <td>{{ $member[0]->spouse_id }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
