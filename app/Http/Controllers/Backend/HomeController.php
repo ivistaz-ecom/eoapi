@@ -55,17 +55,15 @@ class HomeController extends Controller
             return view('searchresult', ['member' => 'none']);
         }
 
-        if (is_int($request->search)) {
+        if (is_numeric($request->search)) {
             $member = Eomembers::where('id', $request->search)->get();
-        } elseif (is_string($request->search)) {
+        } elseif (filter_var($request->search, FILTER_VALIDATE_EMAIL)) {
             $member = Eomembers::where('email', $request->search)->get();
+        } else {
+            $member = Eomembers::where('firstname', 'like', '%'.$request->search.'%')->paginate(10);
         }
-        // die($member);
-        // if (count((array)$member) === 0) {
-        //     return view('searchresult', ['member' => 'No data found']);
-        // } else {
-        //     return view('searchresult', ['member' => $member]);
-        // }
+        
         return view('searchresult', ['member' => $member]);
     }
+
 }
