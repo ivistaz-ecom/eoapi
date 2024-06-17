@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td>Spouse ID</td>
-                            <td>{{ $member[0]->spouse_id}}</td>
+                            <td>{{ $member[0]->spouse}}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
