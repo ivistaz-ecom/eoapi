@@ -82,12 +82,14 @@ class PaymentInfoController extends Controller
      * 
      */
     public function downloaddata () {
-        $data = DB::table('riemembers')
-        ->leftJoin('paymentinfo', 'paymentinfo.eoid', 'riemembers.eoid')
-        ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.phone', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
-        ->where('paymentinfo.paymentstatus', 'success')
-        ->distinct('paymentinfo.txnid')
-        ->get();
+        // $data = DB::table('riemembers')
+        // ->leftJoin('paymentinfo', 'paymentinfo.eoid', 'riemembers.eoid')
+        // ->select('paymentinfo.firstname', 'paymentinfo.lastname', 'paymentinfo.region', 'paymentinfo.amount', 'paymentinfo.txnid', 'paymentinfo.email', 'paymentinfo.phone', 'paymentinfo.company', 'riemembers.addr1', 'riemembers.addr2', 'riemembers.city','riemembers.state', 'riemembers.pin', 'riemembers.country', 'riemembers.eoid', 'riemembers.spouseid', 'paymentinfo.created_at')
+        // ->where('paymentinfo.paymentstatus', 'success')
+        // ->distinct('paymentinfo.txnid')
+        // ->get();
+
+        $data = PaymentInfo::get();
         
         // Name of the downloaded file
         $fileName = 'paymentdata.csv';
@@ -103,7 +105,8 @@ class PaymentInfoController extends Controller
         );
 
         // Column names of the CSV fie
-        $columns = array('First Name', 'Last Name', 'Region', 'Amount', 'TXN ID', 'Email', 'Phone', 'Company', 'Address 1', 'Address 2', 'City', 'State', 'PIN', 'Country', 'eoid', 'Spouse ID', 'Create Dt');
+        // $columns = array('First Name', 'Last Name', 'Region', 'Amount', 'TXN ID', 'Email', 'Phone', 'Company', 'Address 1', 'Address 2', 'City', 'State', 'PIN', 'Country', 'eoid', 'Spouse ID', 'Create Dt');
+        $columns = array('First Name', 'Last Name', 'Region', 'Amount', 'TXN ID', 'Email', 'Phone', 'Company', 'Address', 'eoid', 'Spouse ID', 'Create Dt');
 
         $callback = function() use($data, $columns) {
             $file = fopen('php://output', 'w');
@@ -119,12 +122,7 @@ class PaymentInfoController extends Controller
                     $task->email,
                     $task->phone,
                     $task->company,
-                    $task->addr1,
-                    $task->addr2,
-                    $task->city,
-                    $task->state,
-                    $task->pin,
-                    $task->country,
+                    $task->companyaddr,
                     $task->eoid,
                     $task->spouseid,
                     $task->created_at
