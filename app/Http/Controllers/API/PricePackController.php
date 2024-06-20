@@ -16,7 +16,7 @@ class PricePackController extends Controller
      */
     public function index()
     {
-        $packs = PricePackages::get();
+        $packs = PricePackages::where('numbooked', '<', 'totalcount')->where('offerstatus', '=', 'y')->first();
         return response()->json($packs);
     }
 
@@ -26,7 +26,7 @@ class PricePackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PricePackagesRequest $request)
     {
         //
     }
@@ -39,7 +39,8 @@ class PricePackController extends Controller
      */
     public function show($id)
     {
-        //
+        $package = PricePackages::find($id);
+        return response()->json($package);
     }
 
     /**
