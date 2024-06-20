@@ -47,10 +47,11 @@
                         <br />
                         <div class="row">
                             <div class="col">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" name="offerstatus" value="y" type="checkbox" <?php if ($packages->offerstatus == 'y') echo 'checked'; ?>>
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Package Status</label>
-                                </div>
+                                <label>Status</label>
+                                <select name="offerstatus" class="form-control">
+                                    <option value="y" <?php if($packages->offerstatus == 'y') echo 'selected'; ?> >Y</option>
+                                    <option value="n" <?php if($packages->offerstatus == 'n') echo 'selected'; ?> >N</option>
+                                </select>
                             </div>
                             <div class="col">
                                 <input type="hidden" name="packid" value="{{ $packages->id }}">
