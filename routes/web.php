@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\PaymentInfoController;
 use App\Http\Controllers\Backend\RegCountController;
 use App\Http\Controllers\Backend\RieRegistrationController;
 use App\Http\Controllers\Backend\AdminUserController;
+use App\Http\Controllers\Backend\PricePackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +86,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update-user', [AdminUserController::class, 'update'])->name('update-user');
     Route::get('edit-user/{id}', [AdminUserController::class, 'edit'])->name('edit-user');
     Route::get('delete-user/{id}', [AdminUserController::class, 'destroy'])->name('delete-user');
+
+    Route::get('price-packs', [PricePackageController::class, 'index'])->name('price-packs');
+    Route::get('add-package', [PricePackageController::class, 'create'])->name('add-package');
+    Route::post('create-package', [PricePackageController::class, 'store'])->name('create-package');
+    Route::get('delete-pack/{id}', [PricePackageController::class, 'destroy'])->name('delete-pack');
+    Route::get('edit-pack/{id}', [PricePackageController::class, 'edit'])->name('edit-pack');
+    Route::post('update-pack', [PricePackageController::class, 'update'])->name('update-pack');
 });
