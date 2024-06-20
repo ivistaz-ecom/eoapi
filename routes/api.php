@@ -13,6 +13,7 @@ use App\Http\Controllers\API\SlpRegController;
 use App\Http\Controllers\API\SlpPrefController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\CheckEmailController;
+use App\Http\Controllers\API\PricePackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::apiResource('payment-info', PaymentController::class);
     Route::resource('email', CheckEmailController::class);
     Route::post('email/check-email', [CheckEmailController::class, 'checkEmail']);
+    Route::apiResource('price-pack', PricePackController::class);
 });
