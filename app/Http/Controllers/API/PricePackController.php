@@ -18,7 +18,7 @@ class PricePackController extends Controller
     public function index()
     {
         // $packs = PricePackages::where('numbooked', '<', 'totalcount')->get();
-        $packs = DB::select(DB::raw("SELECT * FROM `pricepackages` WHERE numbooked < totalcount AND offerstatus = 'y' LIMIT 1"));
+        $packs = DB::select(DB::raw("SELECT * FROM `pricepackages` WHERE `numbooked` < `totalcount` AND `offerstatus` = 'y' LIMIT 1"));
         return response()->json($packs);
     }
 
