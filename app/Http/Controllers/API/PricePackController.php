@@ -16,7 +16,7 @@ class PricePackController extends Controller
      */
     public function index()
     {
-        $packs = PricePackages::where('numbooked', '<', 'totalcount')->where('offerstatus', 'y')->take(1)->get();
+        $packs = PricePackages::get();
         return response()->json($packs);
     }
 
