@@ -16,7 +16,7 @@ class PricePackController extends Controller
      */
     public function index()
     {
-        $packs = PricePackages::get();
+        $packs = PricePackages::where('numbooked', '<', 'totalcount')->get();
         return response()->json($packs);
     }
 
