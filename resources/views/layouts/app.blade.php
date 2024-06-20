@@ -114,7 +114,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Offers</h6>
                         <a class="collapse-item" href="{{ route('offers') }}">All Offers</a>
-                        <a class="collapse-item" href="{{ route('add-offer') }}">Add Offer</a>
+                        <a class="collapse-item" href="{{ route('price-packs') }}">Price Packs</a>
                         <a class="collapse-item" href="{{ route('payments') }}">All Payments</a>
                     </div>
                 </div>
