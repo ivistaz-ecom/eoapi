@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PricePackagesRequest;
 use App\Models\PricePackages;
+use Illuminate\Support\Facades\DB;
 
 class PricePackController extends Controller
 {
@@ -16,7 +17,8 @@ class PricePackController extends Controller
      */
     public function index()
     {
-        $packs = PricePackages::where('numbooked', '<', 'totalcount')->get();
+        // $packs = PricePackages::where('numbooked', '<', 'totalcount')->get();
+        $packs = DB::select(DB::raw("SELECT * FROM `pricepackages` WHERE numbooked < totalcount AND offerstatus = 'y' LIMIT 1"));
         return response()->json($packs);
     }
 
