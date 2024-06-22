@@ -49,4 +49,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::resource('email', CheckEmailController::class);
     Route::post('email/check-email', [CheckEmailController::class, 'checkEmail']);
     Route::apiResource('price-pack', PricePackController::class);
+    Route::post('price-pack/addbooking/{id}/{numbooked}', [PricePackController::class, 'addBooking']);
 });
