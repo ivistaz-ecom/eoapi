@@ -72,6 +72,20 @@ class PricePackController extends Controller
     }
 
     /**
+     * Book offer
+     */
+    public function addBooking($id, $num)
+    {
+        $package = PricePackages::find($id);
+        if ($package->increment('numbooked', $num)) {
+            $numbooked = PricePackages::where('id', $id)->pluck('numbooked');
+            return response()->json(['message' => 'Offer applied', 'nombooked' => $numbooked]);
+        } else {
+            return response()->json(['message' => 'offer add failed']);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
