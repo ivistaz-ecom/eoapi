@@ -55,7 +55,12 @@ class SlpPrefController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $memberpref = SlpPreferences::find($id);
+        $memberpref->update($request->all());
+        return response()->json([
+            'messgae' => 'SLP pref updated successfully',
+            'memberpref' => $memberpref
+        ]);
     }
 
     /**
