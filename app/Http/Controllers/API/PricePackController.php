@@ -57,9 +57,17 @@ class PricePackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $numbooked = PricePackages::find($request->id);
+        if ($numbooked->numbooked < $numbooked->totalcount) {
+            $pricepak = PricePackages::where('id', $request->id)->increment('numbooked', $request->count);
+            return response()->json(['message' => 'Number booked updated']);
+        } else {
+            return response()->json(['message' => 'limit full']);
+        }
+        
+        
     }
 
     /**
