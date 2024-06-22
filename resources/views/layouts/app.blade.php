@@ -124,7 +124,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Reports</span></a>
+                    <span>Coupons</span></a>
             </li>
 
             <!-- Admin Users - Tables -->
