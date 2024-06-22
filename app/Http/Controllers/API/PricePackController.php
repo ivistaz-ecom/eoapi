@@ -67,7 +67,7 @@ class PricePackController extends Controller
         //     return response()->json(['message' => 'limit full']);
         // }
         $pricepak = PricePackages::find($id);
-        $pricepak->increment('numbooked', $request->numbooked);
+        $pricepak->increment('numbooked', (int)$request->numbooked);
         return response()->json(['message' => 'Number booked updated']);
     }
 
