@@ -59,7 +59,7 @@ class MemberPrefController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $memberpref = Eomembers::find($id);
+        $memberpref = RieMembersPref::find($id);
         $memberpref->RieMembersPref::update($request->all());
         return response()->json([
             'messgae' => 'RieMember updated successfully',
