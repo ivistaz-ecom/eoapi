@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\RegCountController;
 use App\Http\Controllers\Backend\RieRegistrationController;
 use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\PricePackageController;
+use App\Http\Controllers\Backend\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +94,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-pack/{id}', [PricePackageController::class, 'destroy'])->name('delete-pack');
     Route::get('edit-pack/{id}', [PricePackageController::class, 'edit'])->name('edit-pack');
     Route::post('update-pack', [PricePackageController::class, 'update'])->name('update-pack');
+
+    Route::get('coupons', [CouponController::class, 'index'])->name('coupons');
+    Route::get('show-coupon/{id}', [CouponController::class, 'show'])->name('show-coupon');
+    Route::get('edit-coupon/{id}', [CouponController::class, 'edit'])->name('edit-coupon');
+    Route::post('update-coupon}', [CouponController::class, 'update'])->name('update-coupon');
+    Route::get('add-coupon', [CouponController::class, 'create'])->name('add-coupon');
+    Route::post('save-coupon', [CouponController::class, 'store'])->name('save-coupon');
+    Route::get('delete-coupon/{id}', [CouponController::class, 'destroy'])->name('delete-coupon');
 });
