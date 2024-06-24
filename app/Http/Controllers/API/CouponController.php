@@ -19,10 +19,10 @@ class CouponController extends Controller
     }
 
     public function checkCoupon ($coupon) {
-        $coupon = PriceCoupon::where('code', $coupon)->exists();
-        if ($coupon) {
-            $code = PriceCoupon::where('code', $coupon)->get();
-            return response()->json(['message' => 'true', 'code' => $code]);
+        $code = PriceCoupon::where('code', $coupon)->exists();
+        if ($code) {
+            $cc = PriceCoupon::where('code', $coupon)->get();
+            return response()->json(['message' => 'true', 'code' => $cc]);
         } else {
             return response()->json(['message' => 'false']);
         }
