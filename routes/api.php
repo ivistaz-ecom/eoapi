@@ -53,4 +53,5 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::post('price-pack/addbooking/{id}/{numbooked}', [PricePackController::class, 'addBooking']);
 
     Route::resource('coupon', CouponController::class);
+    Route::get('coupon/check-coupon/{coupon}', [CouponController::class, 'checkCoupon']);
 });
