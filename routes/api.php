@@ -14,6 +14,7 @@ use App\Http\Controllers\API\SlpPrefController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\CheckEmailController;
 use App\Http\Controllers\API\PricePackController;
+use App\Http\Controllers\API\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +51,6 @@ Route::middleware('auth:sanctum')->prefix('eoglobal')->group(function () {
     Route::post('email/check-email', [CheckEmailController::class, 'checkEmail']);
     Route::apiResource('price-pack', PricePackController::class);
     Route::post('price-pack/addbooking/{id}/{numbooked}', [PricePackController::class, 'addBooking']);
+
+    Route::resource('coupon', CouponController::class);
 });
