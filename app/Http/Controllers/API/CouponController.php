@@ -18,6 +18,10 @@ class CouponController extends Controller
         return response()->json(['message' => 'not authorized']);
     }
 
+    /**
+     * Coupon Code
+     */
+
     public function checkCoupon ($coupon) {
         $code = PriceCoupon::where('code', $coupon)->exists();
         if ($code) {
